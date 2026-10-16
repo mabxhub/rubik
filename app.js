@@ -91,8 +91,30 @@ document.addEventListener('keydown', event => {
       if (!cubeGroup) return;
       // Keep F squarely in front, R on the right, and L on the left.
       // A small downward tilt reveals U without turning either side toward the viewer.
-      cubeGroup.rotation.set(0.28, 0, 0);
+      cubeGroup.rotation.set(0.46, 0, 0);
       targetCubeQuat.copy(cubeGroup.quaternion);
+    }
+
+    function addFaceMarker(sticker, letter) {
+      const canvas = document.createElement('canvas');
+      canvas.width = canvas.height = 128;
+      const context = canvas.getContext('2d');
+      context.beginPath();
+      context.arc(64, 64, 54, 0, Math.PI * 2);
+      context.fillStyle = 'rgba(15, 23, 42, 0.82)';
+      context.fill();
+      context.font = 'bold 76px system-ui, sans-serif';
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillStyle = '#ffffff';
+      context.fillText(letter, 64, 67);
+      const texture = new THREE.CanvasTexture(canvas);
+      const marker = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.34, 0.34),
+        new THREE.MeshBasicMaterial({map: texture, transparent: true, depthWrite: false})
+      );
+      marker.position.z = 0.008;
+      sticker.add(marker);
     }
 
     function initThree() {
@@ -154,6 +176,7 @@ document.addEventListener('keydown', event => {
         sticker.userData = { faceletIndex: idx };
         parentCubie.add(sticker);
         stickerMeshes[idx] = sticker;
+        if (idx % 9 === 4) addFaceMarker(sticker, FACE_NAMES[Math.floor(idx / 9)]);
       }
 
       setupPointerControls(canvas);
