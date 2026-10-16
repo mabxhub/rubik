@@ -89,11 +89,9 @@ document.addEventListener('keydown', event => {
 
     function resetCubeOrientation() {
       if (!cubeGroup) return;
-      // Exact isometric angle from the video (showing Top, Front-Left, and Front-Right faces)
-      cubeGroup.rotation.set(0, 0, 0);
-      const qx = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), 0.56);
-      const qy = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), -0.78);
-      cubeGroup.quaternion.multiplyQuaternions(qx, qy);
+      // Keep F squarely in front, R on the right, and L on the left.
+      // A small downward tilt reveals U without turning either side toward the viewer.
+      cubeGroup.rotation.set(0.28, 0, 0);
       targetCubeQuat.copy(cubeGroup.quaternion);
     }
 
