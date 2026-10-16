@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#edf2f7">
+<meta name="description" content="Warnakan kiub Rubik anda dan ikuti penyelesaian 3D langkah demi langkah dalam Bahasa Melayu.">
+<title>Penyelesai Rubik 3D · MABX</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="vendor/three.min.js"></script>
+<script defer src="engine.js"></script>
+<script defer src="app.js"></script>
+</head>
+<body>
+<header class="heading"><a class="brand" href="./">MABX<span> / RUBIK</span></a><span class="tag">3 × 3 × 3</span></header>
+<div class="app">
+<section class="workspace" aria-label="Paparan kiub">
+<div class="intro"><span class="eyebrow">DARI ACAK KE SELESAI</span><h1>Setiap pusingan, <br>satu langkah lebih dekat.</h1><p>Padankan warna kiub anda. Biar kami tunjukkan caranya.</p></div>
+<main id="canvasWrap"><canvas id="rubikCanvas" aria-label="Kiub Rubik 3D. Seret untuk putar, ketik petak untuk mewarna."></canvas></main>
+<div class="view-tools"><span>↔ Seret untuk putar · Ketik untuk warna</span><button id="btnView" type="button" aria-label="Kembalikan sudut pandangan">↺ Sudut asal</button></div>
+</section>
+<aside class="panel" aria-label="Kawalan penyelesai">
+<div><span class="eyebrow">01 / PADANKAN KIUB</span><h2>Warnakan kiub anda</h2><p>Pilih warna di bawah, kemudian ketik petak pada kiub. Putar kiub untuk melihat semua enam muka.</p></div>
+<div id="paletteBar" aria-label="Pilihan warna"></div>
+<p id="colorCount" class="count" aria-live="polite"></p>
+<div id="statusBanner" class="hidden status" role="status" aria-live="polite"><span id="statusText"></span><button id="btnAutoFixSolve" class="hidden" type="button">Baiki &amp; selesaikan</button></div>
+<div id="paintBottomBar"><button id="btnSolve" class="primary" type="button">Cari penyelesaian <span>→</span></button><div class="secondary-row"><button id="btnReset" type="button">↺ Kosongkan</button><button id="btnScramble" type="button">⤨ Cuba kiub rawak</button></div></div>
+<div id="solvePlayerBar" class="hidden player"><div class="move-row"><div id="moveBadge">—</div><div><div id="stepCounterText">Langkah 0 / 0</div><div id="moveInstructionText">Tekan Seterusnya untuk mula</div></div></div><div class="player-buttons"><button id="btnPrevStep" type="button" aria-label="Langkah sebelumnya">◀</button><button id="btnAutoPlay" type="button"><span id="autoPlayIcon">▶</span> <span id="autoPlayLabel">Auto</span></button><button id="btnNextStep" class="primary" type="button" aria-label="Langkah seterusnya">▶</button></div><button id="btnExitSolve" class="text-button" type="button">✎ Kembali mewarna</button></div>
+<div class="tip"><strong>Cara bermula</strong><p>Setiap warna perlu ada 9 petak, termasuk satu petak tengah. Untuk mencuba dahulu, pilih “Cuba kiub rawak”.</p></div>
+<details><summary>Panduan notasi pusingan</summary><p>U: atas · D: bawah · R: kanan · L: kiri · F: hadapan · B: belakang. Tanda ′ bermaksud lawan jam; 2 bermaksud 180°. Arah jam dilihat terus dari muka yang dipusing.</p></details>
+</aside>
+</div>
+<footer>Dibina untuk belajar, satu pusingan pada satu masa.<span>MABX / PENYELESAI RUBIK 3D</span></footer>
+<noscript>Aplikasi ini memerlukan JavaScript untuk memaparkan dan menyelesaikan kiub.</noscript>
+</body>
+</html>
