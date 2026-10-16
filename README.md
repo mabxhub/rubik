@@ -1,6 +1,6 @@
 # Penyelesai Rubik 3D
 
-Paparan satu skrin tanpa scroll untuk desktop dan mobile. Pilih warna, ketik petak, seret untuk putar, kemudian tekan **Selesaikan**. Butang **⤨** menyediakan kiub rawak.
+Paparan satu skrin tanpa scroll untuk desktop dan mobile. Setiap warna dihadkan kepada 9 petak; warna penuh digelapkan. Baki 9 petak putih dilengkapkan secara automatik. Ketik semula petak dengan warna yang sama untuk mengosongkannya. Pilih warna, ketik petak, seret untuk putar, kemudian tekan **Selesaikan**. Butang **⤨** menyediakan kiub rawak.
 
 ## GitHub Pages dan PWA
 

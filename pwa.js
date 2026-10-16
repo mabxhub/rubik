@@ -19,7 +19,7 @@
     const reloadWhenIdle = () => {
       if (isAnimating || solving) { setTimeout(reloadWhenIdle, 100); return; }
       refreshing = true;
-      try { sessionStorage.setItem('rubik-resume', JSON.stringify({facelets,selectedColor,inSolveMode,solutionMoves,solutionStep})); } catch {}
+      try { sessionStorage.setItem('rubik-resume', JSON.stringify({facelets,paintedMask,selectedColor,inSolveMode,solutionMoves,solutionStep})); } catch {}
       location.reload();
     };
     reloadWhenIdle();

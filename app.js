@@ -55,6 +55,7 @@ document.addEventListener('keydown', event => {
     // =========================================================================
     // Start with all 54 stickers White (3) just like the video at 00:00 so user can paint right away!
     let facelets = new Array(54).fill(3);
+    let paintedMask = new Array(54).fill(false);
     let selectedColor = 5; // Default Green selected (or first tap)
     let inSolveMode = false;
     let solutionMoves = [];
@@ -271,10 +272,7 @@ document.addEventListener('keydown', event => {
           const hits = raycaster.intersectObjects(stickerMeshes, false);
           if (hits.length > 0) {
             const idx = hits[0].object.userData.faceletIndex;
-            facelets[idx] = selectedColor;
-            syncStickers();
-            hideStatusBanner();
-            playTick(340, 0.025);
+            paintSticker(idx);
           }
         }
       }
@@ -358,6 +356,8 @@ document.addEventListener('keydown', event => {
           if (isAnimating || solving) return;
           if (inSolveMode) exitSolveMode();
           updateColorCount();
+          if (getPaintCounts()[colorId] >= 9) showStatusBanner(`${c.name} sudah cukup 9 petak.`);
+          else hideStatusBanner();
           playTick(400, 0.02);
         });
         bar.appendChild(btn);
@@ -398,6 +398,11 @@ document.addEventListener('keydown', event => {
       stopAuto();
       hideStatusBanner();
 
+      completeRemainingWhite();
+      if (paintedMask.some(painted => !painted)) {
+        showStatusBanner('Warna belum lengkap. Setiap warna mesti mempunyai 9 petak.');
+        return;
+      }
       const check = faceletsToCubie(facelets);
       if (!check.valid) {
         showStatusBanner(check.error, check.canAutoFix);
@@ -405,8 +410,7 @@ document.addEventListener('keydown', event => {
       }
 
       if (isSolved(facelets)) {
-        showStatusBanner('🎉 Kiub Rubik sudah selesai!', false);
-        setTimeout(hideStatusBanner, 2800);
+
         return;
       }
 
@@ -423,7 +427,7 @@ document.addEventListener('keydown', event => {
       } catch (error) { showStatusBanner(error.message); return; }
       finally { solving = false; setBusy(false); }
       if (!moves || moves.length === 0) {
-        showStatusBanner('🎉 Kiub Rubik sudah selesai!', false);
+
         return;
       }
 
@@ -530,6 +534,9 @@ document.addEventListener('keydown', event => {
         sessionStorage.removeItem('rubik-resume');
         if (saved && Array.isArray(saved.facelets) && saved.facelets.length === 54 && saved.facelets.every(c => Number.isInteger(c) && c >= 0 && c < 6)) {
           facelets = saved.facelets;
+          paintedMask = Array.isArray(saved.paintedMask) && saved.paintedMask.length === 54 && saved.paintedMask.every(value => typeof value === 'boolean')
+            ? saved.paintedMask : facelets.map(c => c !== 3 || facelets.filter(value => value === 3).length === 9);
+          completeRemainingWhite();
           selectedColor = Number.isInteger(saved.selectedColor) && saved.selectedColor >= 0 && saved.selectedColor < 6 ? saved.selectedColor : 5;
           if (saved.inSolveMode && Array.isArray(saved.solutionMoves) && saved.solutionMoves.every(m => Number.isInteger(m) && m >= 0 && m < 18) && Number.isInteger(saved.solutionStep) && saved.solutionStep >= 0 && saved.solutionStep <= saved.solutionMoves.length) {
             inSolveMode = true; solutionMoves = saved.solutionMoves; solutionStep = saved.solutionStep;
@@ -549,6 +556,7 @@ document.addEventListener('keydown', event => {
         exitSolveMode();
         hideStatusBanner();
         facelets = new Array(54).fill(3);
+        paintedMask = new Array(54).fill(false);
         resetCubeOrientation();
         syncStickers();
         playTick(300, 0.04);
@@ -564,6 +572,7 @@ document.addEventListener('keydown', event => {
           s = multiplyCubie(s, ALL_MOVES[Math.floor(Math.random() * 18)]);
         }
         facelets = cubieToFacelets(s);
+        paintedMask = new Array(54).fill(true);
         syncStickers();
         playTick(320, 0.04);
       });
@@ -582,9 +591,44 @@ document.addEventListener('keydown', event => {
       document.getElementById('btnExitSolve').addEventListener('click', exitSolveMode);
     });
   
+function getPaintCounts() {
+  const counts = new Array(6).fill(0);
+  facelets.forEach((color, idx) => { if (paintedMask[idx]) counts[color]++; });
+  return counts;
+}
+function completeRemainingWhite() {
+  const counts = getPaintCounts();
+  if ([0,1,2,4,5].every(color => counts[color] === 9)) {
+    facelets.forEach((color, idx) => { if (!paintedMask[idx]) { facelets[idx] = 3; paintedMask[idx] = true; } });
+  }
+}
+function paintSticker(idx) {
+  if (inSolveMode || isAnimating || solving) return;
+  // A second tap clears a painted sticker, allowing corrections even when all colours are full.
+  if (paintedMask[idx] && facelets[idx] === selectedColor) {
+    paintedMask[idx] = false;
+    facelets[idx] = 3;
+  } else {
+    if (getPaintCounts()[selectedColor] >= 9) {
+      showStatusBanner(`${COLOR_DEFS[selectedColor].name} sudah cukup 9 petak.`);
+      return;
+    }
+    facelets[idx] = selectedColor;
+    paintedMask[idx] = true;
+  }
+  completeRemainingWhite();
+  syncStickers();
+  hideStatusBanner();
+  playTick(340, 0.025);
+}
 function updateColorCount() {
-  const count = facelets.filter(c => c === selectedColor).length;
-  document.getElementById('colorCount').textContent = `${COLOR_DEFS[selectedColor].name}: ${count} / 9`;
+  const counts = getPaintCounts();
+  PALETTE_ORDER.forEach(color => {
+    const button = document.getElementById(`colorTile_${color}`);
+    if (!button) return;
+    button.classList.toggle('color-tile-full', counts[color] >= 9);
+    button.setAttribute('aria-label', `${COLOR_DEFS[color].name}${counts[color] >= 9 ? ', sudah cukup' : ''}`);
+  });
 }
 function setBusy(busy) {
   for (const id of ['btnSolve','btnReset','btnScramble']) document.getElementById(id).disabled = busy;
