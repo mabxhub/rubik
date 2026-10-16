@@ -1,3 +1,18 @@
+// Use Safari's visible area rather than the larger layout viewport.
+function fitVisibleViewport() {
+  const viewport = window.visualViewport;
+  const root = document.documentElement.style;
+  root.setProperty('--viewport-width', `${viewport?.width || window.innerWidth}px`);
+  root.setProperty('--viewport-height', `${viewport?.height || window.innerHeight}px`);
+  root.setProperty('--viewport-left', `${viewport?.offsetLeft || 0}px`);
+  root.setProperty('--viewport-top', `${viewport?.offsetTop || 0}px`);
+}
+fitVisibleViewport();
+window.addEventListener('resize', fitVisibleViewport);
+window.addEventListener('pageshow', fitVisibleViewport);
+window.visualViewport?.addEventListener('resize', fitVisibleViewport);
+window.visualViewport?.addEventListener('scroll', fitVisibleViewport);
+
 // Keep the application viewport fixed while preserving single-finger cube rotation.
 for (const type of ['gesturestart', 'gesturechange', 'gestureend', 'dblclick']) {
   document.addEventListener(type, event => event.preventDefault(), {passive:false});
@@ -95,7 +110,7 @@ document.addEventListener('keydown', event => {
       camera.lookAt(0, 0, 0);
 
       renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-      renderer.setSize(w, h);
+      renderer.setSize(w, h, false);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
       cubeGroup = new THREE.Group();
@@ -150,12 +165,10 @@ document.addEventListener('keydown', event => {
 
     function getOptimalCameraZ(w, h, fov = 34) {
       const aspect = (w && h) ? (w / h) : 1;
-      const tanHalfFov = Math.tan((fov * Math.PI / 180) / 2);
-      // Sweet-spot scale (~76% of screen width with comfortable side & vertical margins)
-      const halfSpan = 2.5;
-      const zVert = (halfSpan * 1.15) / tanHalfFov;
-      const zHoriz = halfSpan / (tanHalfFov * aspect);
-      return Math.max(zVert, zHoriz);
+      const verticalHalfAngle = fov * Math.PI / 360;
+      const horizontalHalfAngle = Math.atan(Math.tan(verticalHalfAngle) * aspect);
+      // Fit the entire cube's bounding sphere even after arbitrary drag rotation.
+      return 2.65 * 1.06 / Math.sin(Math.min(verticalHalfAngle, horizontalHalfAngle));
     }
 
     function onResize() {
@@ -166,7 +179,7 @@ document.addEventListener('keydown', event => {
       camera.aspect = w / h;
       camera.position.z = getOptimalCameraZ(w, h, camera.fov);
       camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
+      renderer.setSize(w, h, false);
     }
 
     function animateLoop() {
