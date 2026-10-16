@@ -1,0 +1,10 @@
+import {readFile,writeFile,cp,mkdir,rm} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+const files=['index.html','style.css','app.js','engine.js','solver-worker.js','pwa.js','manifest.webmanifest','vendor/three.min.js','icons/icon-192.png','icons/icon-512.png'];
+const hash=createHash('sha256');
+for(const file of [...files,'sw.template.js']) hash.update(await readFile(file));
+const version=hash.digest('hex').slice(0,16);
+await writeFile('sw.js',(await readFile('sw.template.js','utf8')).replace('__VERSION__',version));
+await rm('dist',{recursive:true,force:true});await mkdir('dist');
+for(const file of [...files,'sw.js','vendor/THREE-LICENSE.txt']) await cp(file,`dist/${file}`,{recursive:true,force:true}).catch(async error=>{if(error.code!=='ENOENT')throw error;await mkdir(`dist/${file.split('/').slice(0,-1).join('/')}`,{recursive:true});await cp(file,`dist/${file}`);});
+console.log(`Built Rubik ${version}`);

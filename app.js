@@ -340,9 +340,9 @@
     function showStatusBanner(msg, showAutoFix = false) {
       const banner = document.getElementById('statusBanner');
       const txt = document.getElementById('statusText');
-      const fixBtn = document.getElementById('btnAutoFixSolve');
+
       txt.textContent = msg;
-      fixBtn.classList.add('hidden');
+
       banner.classList.remove('hidden');
     }
 
@@ -498,6 +498,21 @@
     window.addEventListener('DOMContentLoaded', () => {
       buildTopPalette();
       try { initThree(); } catch (error) { showStatusBanner('Paparan 3D tidak tersedia. Sila gunakan pelayar dengan sokongan WebGL.'); document.getElementById('btnSolve').disabled = true; return; }
+      try {
+        const saved = JSON.parse(sessionStorage.getItem('rubik-resume'));
+        sessionStorage.removeItem('rubik-resume');
+        if (saved && Array.isArray(saved.facelets) && saved.facelets.length === 54 && saved.facelets.every(c => Number.isInteger(c) && c >= 0 && c < 6)) {
+          facelets = saved.facelets;
+          selectedColor = Number.isInteger(saved.selectedColor) && saved.selectedColor >= 0 && saved.selectedColor < 6 ? saved.selectedColor : 5;
+          if (saved.inSolveMode && Array.isArray(saved.solutionMoves) && saved.solutionMoves.every(m => Number.isInteger(m) && m >= 0 && m < 18) && Number.isInteger(saved.solutionStep) && saved.solutionStep >= 0 && saved.solutionStep <= saved.solutionMoves.length) {
+            inSolveMode = true; solutionMoves = saved.solutionMoves; solutionStep = saved.solutionStep;
+            document.getElementById('paintBottomBar').classList.add('hidden');
+            document.getElementById('solvePlayerBar').classList.remove('hidden');
+            updateSolveBarUI();
+          }
+          buildTopPalette(); syncStickers();
+        }
+      } catch {}
       updateColorCount();
       document.getElementById('btnView').addEventListener('click', resetCubeOrientation);
 
@@ -528,7 +543,7 @@
 
       // Solve! Button
       document.getElementById('btnSolve').addEventListener('click', () => startSolveProcess(false));
-      document.getElementById('btnAutoFixSolve').addEventListener('click', () => startSolveProcess(true));
+      document.getElementById('btnDismissStatus').addEventListener('click', hideStatusBanner);
 
       // Step-by-step Player Controls
       document.getElementById('btnNextStep').addEventListener('click', () => {
@@ -542,10 +557,10 @@
   
 function updateColorCount() {
   const count = facelets.filter(c => c === selectedColor).length;
-  document.getElementById('colorCount').textContent = `${COLOR_DEFS[selectedColor].name}: ${count} / 9 petak · pilih warna dan ketik petak`;
+  document.getElementById('colorCount').textContent = `${COLOR_DEFS[selectedColor].name}: ${count} / 9`;
 }
 function setBusy(busy) {
   for (const id of ['btnSolve','btnReset','btnScramble']) document.getElementById(id).disabled = busy;
   document.querySelectorAll('.color-tile').forEach(button => button.disabled = busy);
-  document.getElementById('btnSolve').textContent = busy ? 'Sedang mencari…' : 'Cari penyelesaian →';
+  document.getElementById('btnSolve').textContent = busy ? 'Sedang mencari…' : 'Selesaikan';
 }

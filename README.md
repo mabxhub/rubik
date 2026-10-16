@@ -1,42 +1,29 @@
 # Penyelesai Rubik 3D
 
-Aplikasi web Bahasa Melayu untuk mewarna kiub Rubik 3×3×3 dan memainkan penyelesaian beranimasi. Mesra desktop, telefon dan tablet, tanpa proses build atau perkhidmatan backend.
+Paparan satu skrin tanpa scroll untuk desktop dan mobile. Pilih warna, ketik petak, seret untuk putar, kemudian tekan **Selesaikan**. Butang **⤨** menyediakan kiub rawak.
 
-## Jalankan secara tempatan
+## GitHub Pages dan PWA
+
+1. Di repo, buka **Settings → Pages → Source → GitHub Actions**.
+2. Jalankan workflow **Deploy GitHub Pages**, atau push perubahan ke `main`.
+3. Buka https://mabxhub.github.io/rubik/ selepas deployment berjaya.
+4. Android/desktop: gunakan **Pasang** apabila ditawarkan pelayar. iPhone/iPad: **Share → Add to Home Screen**.
+
+Aplikasi boleh dibuka tanpa internet selepas cache pemasangan pertama siap. HTTPS diperlukan, kecuali localhost untuk pembangunan.
+
+Setiap push ke `main` membina versi cache baharu secara automatik apabila fail aplikasi berubah. Aplikasi menyemak kemas kini apabila dibuka, kembali aktif, kembali dalam talian, dan setiap jam semasa dibuka. Tekan **Kemas kini** apabila versi baharu tersedia. Warna kiub serta kemajuan langkah dalam tab yang sama dipulihkan selepas muat semula. Pelayar menentukan masa pemasangan dan semakan kemas kini; iOS menggunakan pemasangan melalui menu Share.
+
+## Pembangunan
 
 ```sh
-python3 -m http.server 8000
+node scripts/build.mjs
+python3 -m http.server 8000 --directory dist
 ```
 
-Buka http://localhost:8000. Gunakan pelayan HTTP kerana Web Worker tidak dapat dijalankan melalui `file://`.
-
-## Cara guna
-
-1. Pilih warna dan ketik petak pada kiub. Seret untuk melihat muka lain.
-2. Pastikan keenam-enam petak tengah mempunyai warna berbeza dan setiap warna mempunyai 9 petak.
-3. Tekan **Cari penyelesaian**. Gunakan langkah sebelumnya, seterusnya atau Auto.
-4. Pilih **Cuba kiub rawak** untuk demonstrasi, **Kosongkan** untuk input baharu, atau **Sudut asal** untuk menetapkan semula pandangan.
-
-Input yang tidak sah akan ditolak tanpa mengubah warna kiub. Penyelesaian menggunakan algoritma empat fasa; bilangan pusingan tidak semestinya minimum. Pengiraan dibuat dalam Web Worker dan hasil disahkan sebelum dipaparkan. Sokongan WebGL dan JavaScript diperlukan. Semua aset aplikasi disimpan dalam repo; tiada CDN diperlukan semasa penggunaan.
-
-## GitHub Pages
-
-Di **Settings → Pages → Build and deployment**, pilih **Deploy from a branch**, kemudian **main** dan **/(root)**. Selepas diterbitkan, alamat lazim ialah https://mabxhub.github.io/rubik/.
-
-## Semakan
+Buka http://localhost:8000. Bina semula selepas mengubah fail untuk menjana `sw.js` baharu. `dist/` ialah artifak deployment yang dijana, dan tidak dimasukkan ke Git.
 
 ```sh
 node tests/engine.test.cjs
 ```
 
-Ujian meliputi keserasian 18 pusingan visual dengan enjin, pusingan songsang, 100 acakan berbenih tetap termasuk skema warna tengah tersuai, dan keadaan kiub mustahil.
-
-## Fail utama
-
-- `index.html`, `style.css`: antara muka responsif.
-- `app.js`: paparan Three.js, input pointer dan pemain langkah.
-- `engine.js`: perwakilan kiub, pengesahan dan algoritma penyelesaian.
-- `solver-worker.js`: pengiraan di latar dan pengesahan hasil.
-- `vendor/three.min.js`: Three.js r128 (MIT; lihat `vendor/THREE-LICENSE.txt`).
-
-Berasaskan fail HTML yang dibekalkan oleh pemilik repo.
+Enjin empat fasa mengesahkan input dan hasil penyelesaian. Bilangan pusingan tidak semestinya minimum. WebGL dan JavaScript diperlukan. Three.js r128 disimpan secara tempatan, di bawah lesen MIT dalam `vendor/THREE-LICENSE.txt`.
