@@ -1,7 +1,7 @@
-const CACHE = 'rubik-25a62acbdf517d7c';
+const CACHE = 'rubik-2097bc3d04bc457b';
 const ASSETS = ['./','index.html','style.css','vendor/three.min.js','engine.js','app.js','solver-worker.js','pwa.js','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png'];
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS.map(path => new Request(path, {cache:'reload'})))));
 });
 self.addEventListener('message', event => {
   if (event.data === 'SKIP_WAITING') self.skipWaiting();

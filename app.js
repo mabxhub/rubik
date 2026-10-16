@@ -1,3 +1,17 @@
+// Keep the application viewport fixed while preserving single-finger cube rotation.
+for (const type of ['gesturestart', 'gesturechange', 'gestureend', 'dblclick']) {
+  document.addEventListener(type, event => event.preventDefault(), {passive:false});
+}
+document.addEventListener('touchmove', event => {
+  if (event.touches.length > 1) event.preventDefault();
+}, {passive:false});
+document.addEventListener('wheel', event => {
+  if (event.ctrlKey || event.metaKey) event.preventDefault();
+}, {passive:false});
+document.addEventListener('keydown', event => {
+  if ((event.ctrlKey || event.metaKey) && ['+', '-', '=', '0'].includes(event.key)) event.preventDefault();
+});
+
     // 3. SUBTLE AUDIO FEEDBACK
     // =========================================================================
     let audioCtx = null;
