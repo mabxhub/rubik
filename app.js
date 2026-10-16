@@ -62,6 +62,7 @@ document.addEventListener('keydown', event => {
     let solutionStep = 0;
     let isAnimating = false;
     let autoPlayTimer = null;
+    let autoPlayRun = 0;
     let autoStepMs = 1000;
     let showMoveArrows = true;
     let moveArrow = null;
@@ -501,15 +502,16 @@ document.addEventListener('keydown', event => {
       }
     }
 
-    function stepNext() {
+    function stepNext(onComplete = null) {
       if (isAnimating || solutionStep >= solutionMoves.length) return;
       const m = solutionMoves[solutionStep];
       solutionStep++;
-      animateLayerMove(m, 340, () => {
+      animateLayerMove(m, autoStepMs, () => {
         updateSolveBarUI();
         if (solutionStep >= solutionMoves.length) {
           stopAuto();
         }
+        if (onComplete) onComplete();
       });
     }
 
@@ -518,7 +520,7 @@ document.addEventListener('keydown', event => {
       stopAuto();
       solutionStep--;
       const inv = inverseMoveIndex(solutionMoves[solutionStep]);
-      animateLayerMove(inv, 320, () => {
+      animateLayerMove(inv, autoStepMs, () => {
         updateSolveBarUI();
       });
     }
@@ -532,19 +534,26 @@ document.addEventListener('keydown', event => {
       document.getElementById('autoPlayIcon').textContent = '⏸';
       document.getElementById('autoPlayLabel').textContent = 'Jeda';
 
+      const run = ++autoPlayRun;
       function loop() {
-        if (!autoPlayTimer) return;
+        if (!autoPlayTimer || run !== autoPlayRun) return;
         if (solutionStep >= solutionMoves.length) {
           stopAuto();
           return;
         }
-        if (!isAnimating) stepNext();
-        autoPlayTimer = setTimeout(loop, autoStepMs);
+        if (isAnimating) {
+          autoPlayTimer = setTimeout(loop, 30);
+          return;
+        }
+        stepNext(() => {
+          if (autoPlayTimer && run === autoPlayRun) autoPlayTimer = setTimeout(loop, 0);
+        });
       }
       autoPlayTimer = setTimeout(loop, 30);
     }
 
     function stopAuto() {
+      autoPlayRun++;
       if (autoPlayTimer) {
         clearTimeout(autoPlayTimer);
         autoPlayTimer = null;
