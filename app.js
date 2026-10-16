@@ -62,6 +62,9 @@ document.addEventListener('keydown', event => {
     let solutionStep = 0;
     let isAnimating = false;
     let autoPlayTimer = null;
+    let autoStepMs = 1000;
+    let showMoveArrows = true;
+    let moveArrow = null;
     let solving = false;
 
     let scene, camera, renderer, cubeGroup, pivotGroup;
@@ -308,6 +311,7 @@ document.addEventListener('keydown', event => {
     function animateLayerMove(moveIdx, durationMs = 340, onDone = null) {
       if (isAnimating) return;
       isAnimating = true;
+      if (moveArrow) moveArrow.visible = false;
 
       const face = Math.floor(moveIdx / 3);
       const pow = moveIdx % 3; // 0: CW 90, 1: 180, 2: CCW 90
@@ -464,6 +468,7 @@ document.addEventListener('keydown', event => {
       if (isAnimating || solving) return;
       stopAuto();
       inSolveMode = false;
+      updateMoveArrow();
       solutionMoves = [];
       solutionStep = 0;
       document.getElementById('solvePlayerBar').classList.add('hidden');
@@ -471,6 +476,7 @@ document.addEventListener('keydown', event => {
     }
 
     function updateSolveBarUI() {
+      updateMoveArrow();
       const total = solutionMoves.length;
       const cur = solutionStep;
       const badge = document.getElementById('moveBadge');
@@ -533,7 +539,7 @@ document.addEventListener('keydown', event => {
           return;
         }
         if (!isAnimating) stepNext();
-        autoPlayTimer = setTimeout(loop, 410);
+        autoPlayTimer = setTimeout(loop, autoStepMs);
       }
       autoPlayTimer = setTimeout(loop, 30);
     }
@@ -570,6 +576,25 @@ document.addEventListener('keydown', event => {
       } catch {}
       updateColorCount();
       document.getElementById('btnView').addEventListener('click', resetCubeOrientation);
+      try {
+        const speed = Number(localStorage.getItem('rubik-auto-speed'));
+        if ([500,1000,1500,2000].includes(speed)) autoStepMs = speed;
+        showMoveArrows = localStorage.getItem('rubik-arrows') !== 'false';
+      } catch {}
+      document.getElementById('autoSpeed').value = String(autoStepMs);
+      document.getElementById('btnArrows').setAttribute('aria-pressed', String(showMoveArrows));
+      updateMoveArrow();
+      document.getElementById('autoSpeed').addEventListener('change', event => {
+        const speed = Number(event.target.value);
+        if ([500,1000,1500,2000].includes(speed)) autoStepMs = speed;
+        try { localStorage.setItem('rubik-auto-speed', String(autoStepMs)); } catch {}
+      });
+      document.getElementById('btnArrows').addEventListener('click', event => {
+        showMoveArrows = !showMoveArrows;
+        event.currentTarget.setAttribute('aria-pressed', String(showMoveArrows));
+        try { localStorage.setItem('rubik-arrows', String(showMoveArrows)); } catch {}
+        updateMoveArrow();
+      });
 
       // Reset Button: resets all stickers to blank White (just like video 00:00) so user can color from scratch!
       document.getElementById('btnReset').addEventListener('click', () => {
@@ -655,4 +680,36 @@ function setBusy(busy) {
   for (const id of ['btnSolve','btnReset','btnScramble']) document.getElementById(id).disabled = busy;
   document.querySelectorAll('.color-tile').forEach(button => button.disabled = busy);
   document.getElementById('btnSolve').textContent = busy ? 'Sedang mencari…' : 'Selesaikan';
+}
+
+function updateMoveArrow() {
+  if (moveArrow) {
+    moveArrow.parent?.remove(moveArrow);
+    moveArrow.traverse(object => { object.geometry?.dispose(); object.material?.dispose(); });
+    moveArrow = null;
+  }
+  if (!showMoveArrows || !inSolveMode || isAnimating || solutionStep >= solutionMoves.length) return;
+  const move = solutionMoves[solutionStep];
+  const sticker = stickerMeshes[CENTER_INDICES[Math.floor(move / 3)]];
+  if (!sticker) return;
+  const direction = move % 3 === 2 ? 1 : -1;
+  const points = [];
+  for (let i = 0; i <= 64; i++) {
+    const angle = 0.4 + direction * 4.7 * i / 64;
+    points.push(new THREE.Vector3(1.12 * Math.cos(angle), 1.12 * Math.sin(angle), 0.045));
+  }
+  moveArrow = new THREE.Group();
+  const material = new THREE.MeshBasicMaterial({color:0xffdf00,depthWrite:false});
+  const curve = new THREE.CatmullRomCurve3(points);
+  moveArrow.add(new THREE.Mesh(new THREE.TubeGeometry(curve,64,0.035,8,false), material));
+  function arrowHead(t) {
+    const tangent = curve.getTangent(t).normalize();
+    const head = new THREE.Mesh(new THREE.ConeGeometry(0.12,0.28,16),material.clone());
+    head.position.copy(curve.getPoint(t)).addScaledVector(tangent,0.10);
+    head.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),tangent);
+    moveArrow.add(head);
+  }
+  arrowHead(1);
+  if (move % 3 === 1) arrowHead(0.5);
+  sticker.add(moveArrow);
 }

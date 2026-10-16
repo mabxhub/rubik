@@ -3,3 +3,5 @@
 .color-tile-full{filter:brightness(.6);box-shadow:inset 0 2px 5px #0003}.color-tile-full:hover:not(:disabled){filter:brightness(.65)}
 
 #statusBanner{background:#b91c1cf5;color:#fff;border:1px solid #991b1b}#statusBanner button{background:#fff;color:#991b1b;border-color:#fecaca}
+
+.playback-options{display:flex;justify-content:flex-end;gap:8px;margin-bottom:8px}.playback-options select{font:inherit;font-size:12px;border:1px solid #cbd5e1;border-radius:8px;padding:4px 10px;background:#fff;color:#334155;min-height:36px}.playback-options button{min-height:36px;padding:4px 10px;background:#dbeafe;color:#1d4ed8;border-color:#93c5fd;box-shadow:none}.playback-options button[aria-pressed="false"]{background:#e2e8f0;color:#64748b;border-color:#cbd5e1}
