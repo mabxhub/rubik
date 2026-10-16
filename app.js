@@ -403,7 +403,7 @@ document.addEventListener('keydown', event => {
       }
       const check = faceletsToCubie(facelets);
       if (!check.valid) {
-        showStatusBanner(check.error, check.canAutoFix);
+        showStatusBanner('Susunan warna tidak betul.');
         return;
       }
 
