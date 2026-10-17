@@ -14,6 +14,7 @@
   }
   function create(tag,className,text){const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.innerHTML=boldMoves(text);return node;}
   function button(label,fn,className=''){const b=create('button',className,label);b.type='button';b.addEventListener('click',fn);return b;}
+  function iconButton(icon,fn,label){const b=button('',fn);b.setAttribute('aria-label',label);const span=create('span','ui-icon icon-'+icon);span.setAttribute('aria-hidden','true');b.append(span);return b;}
   const clear=()=>{if(demo){demo.dispose();demo=null;}content.replaceChildren();nav.replaceChildren();content.scrollTop=0;};
   const savedProgress=()=>{try{return JSON.parse(localStorage.getItem(progressKey))||{};}catch{return {};}};
   function saveProgress(id,index){try{localStorage.setItem(progressKey,JSON.stringify({...savedProgress(),[id]:index}));}catch{}}
@@ -38,8 +39,8 @@
   function diagram(state,caption,kind){
     const coords=[[100,20],[190,110],[100,110],[100,200],[10,110],[280,110]];
     let svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 290" role="img" aria-label="'+escape(caption)+'"><title>'+escape(caption)+'</title>';
-    coords.forEach(([x,y],face)=>{svg+=`<text x="${x+39}" y="${y-4}" text-anchor="middle" fill="#334155" font-size="12" font-family="system-ui" font-weight="700">${C.faces[face]}</text>`;
-      for(let i=0;i<9;i++){const index=face*9+i;const color=kind&&!goalVisible(kind,index)?'#cbd5e1':C.colors[state[index]];svg+=`<rect x="${x+(i%3)*26}" y="${y+Math.floor(i/3)*26}" width="24" height="24" rx="3" fill="${color}" stroke="#253344" stroke-width="1.5"/>`;}
+    coords.forEach(([x,y],face)=>{svg+=`<text x="${x+39}" y="${y-4}" text-anchor="middle" fill="#b8cadd" font-size="12" font-family="system-ui" font-weight="700">${C.faces[face]}</text>`;
+      for(let i=0;i<9;i++){const index=face*9+i;const color=kind&&!goalVisible(kind,index)?'#334155':C.colors[state[index]];svg+=`<rect x="${x+(i%3)*26}" y="${y+Math.floor(i/3)*26}" width="24" height="24" rx="3" fill="${color}" stroke="#253344" stroke-width="1.5"/>`;}
     });svg+='</svg>';
     const figure=create('figure','tutorial-figure');
     const picture=create('div','tutorial-diagram-picture');
@@ -61,7 +62,7 @@
         for(let cell=0;cell<9;cell++){
           const index=face*9+cell,{pos}=C.geometry(index);
           const center=pos.map((value,i)=>value+normal[i]*.506);
-          const color=kind&&!goalVisible(kind,index)?'#cbd5e1':C.colors[state[index]];
+          const color=kind&&!goalVisible(kind,index)?'#334155':C.colors[state[index]];
           result+=`<polygon data-facelet="${index}" points="${points(center,horizontal,vertical,.445)}" fill="${color}" stroke="#111b26" stroke-width="1.6" stroke-linejoin="round"/>`;
         }
         const [x,y]=project(faceCenter);
@@ -110,10 +111,10 @@
     if(lesson.algs){content.append(create('h4','','Formula & kes contoh'));for(const id of lesson.algs){const alg=algorithms.find(a=>a.id===id);if(alg)content.append(algorithmCard(alg,()=>renderLesson(method,index)));}}
     if(lesson.library)content.append(button(`Buka pustaka ${lesson.library}`,()=>renderLibrary(lesson.library,()=>renderLesson(method,index)),'tutorial-primary'));
     const refs=create('details','tutorial-sources');refs.append(create('summary','','Rujukan pembelajaran'));for(const url of method.sources){const link=create('a','',new URL(url).hostname.replace('www.',''));link.href=url;link.target='_blank';link.rel='noopener noreferrer';refs.append(link);}content.append(refs);
-    nav.append(button('‹ Sebelumnya',()=>renderLesson(method,index-1)),create('span','',`${index+1} / ${method.steps.length}`),button(index===method.steps.length-1?'Senarai teknik':'Seterusnya ›',()=>index===method.steps.length-1?renderMenu():renderLesson(method,index+1)));
+    nav.append(button('Sebelumnya',()=>renderLesson(method,index-1)),create('span','',`${index+1} / ${method.steps.length}`),button(index===method.steps.length-1?'Senarai teknik':'Seterusnya',()=>index===method.steps.length-1?renderMenu():renderLesson(method,index+1)));
     nav.firstChild.disabled=index===0;
   }
-  function algorithmCard(algorithm,onBack){const card=create('article','tutorial-algorithm');card.append(create('h4','',algorithm.name),diagram(C.caseFor(algorithm.alg),'Kes mula · lihat semua enam muka'),create('code','tutorial-formula',algorithm.alg));card.append(button('▶ Cuba formula',()=>renderDemo(algorithm,onBack),'tutorial-primary'));return card;}
+  function algorithmCard(algorithm,onBack){const card=create('article','tutorial-algorithm');card.append(create('h4','',algorithm.name),diagram(C.caseFor(algorithm.alg),'Kes mula · lihat semua enam muka'),create('code','tutorial-formula',algorithm.alg));card.append(button('Cuba formula',()=>renderDemo(algorithm,onBack),'tutorial-primary'));return card;}
   function renderLibrary(group,onBack=renderMenu){clear();setBack(onBack);title.textContent=`Pustaka ${group}`;
     content.append(create('p','tutorial-lead',group==='OLL'?'Kenali corak warna U, termasuk petak U di sisi.':group==='CMLL'?'Padankan bucu sahaja. Tepi M dalam gambar tidak penting untuk CMLL.':'Padankan warna lapisan atas dan pusat sisi.'));
     const search=create('input','tutorial-search');search.type='search';search.placeholder='Cari nama atau nombor kes';search.setAttribute('aria-label','Cari kes '+group);content.append(search);const list=create('div','tutorial-case-list');content.append(list);
@@ -125,10 +126,10 @@
     const stage=create('div','tutorial-stage');const canvas=create('canvas');canvas.setAttribute('aria-label','Kiub latihan formula 3D');stage.append(canvas);content.append(stage);
     const status=create('p','tutorial-demo-status');status.setAttribute('aria-live','polite');content.append(status);
     const tokens=C.parse(algorithm.alg);const formula=create('div','tutorial-tokens');tokens.forEach(token=>formula.append(create('span','',token)));content.append(formula);
-    const controls=create('div','tutorial-demo-controls');const prev=button('◀',()=>demo?.previous());prev.setAttribute('aria-label','Pusingan sebelumnya');const play=button('▶ Main',()=>demo?.toggle(),'tutorial-primary');const next=button('▶',()=>demo?.next());next.setAttribute('aria-label','Pusingan seterusnya');const reset=button('↺',()=>demo?.reset());reset.setAttribute('aria-label','Mula semula formula');controls.append(prev,play,next,reset);content.append(controls);
+    const controls=create('div','tutorial-demo-controls');const prev=iconButton('previous',()=>demo?.previous(),'Pusingan sebelumnya');prev.setAttribute('aria-label','Pusingan sebelumnya');const play=button('Main',()=>demo?.toggle(),'tutorial-primary');const next=iconButton('next',()=>demo?.next(),'Pusingan seterusnya');next.setAttribute('aria-label','Pusingan seterusnya');const reset=iconButton('reset',()=>demo?.reset(),'Mula semula formula');reset.setAttribute('aria-label','Mula semula formula');controls.append(prev,play,next,reset);content.append(controls);
     const select=create('select','tutorial-duration');select.setAttribute('aria-label','Tempoh pusingan latihan');for(const ms of [500,1000,1500,2000]){const option=create('option','',`${ms/1000} s / pusingan`);option.value=ms;option.selected=ms===1000;select.append(option);}content.append(select);
     const details=create('details','tutorial-sources');details.append(create('summary','','Kes mula & hasil akhir'));details.append(diagram(C.caseFor(tokens),'Kes mula'),diagram(C.solved(),'Hasil selepas formula lengkap'));const source=create('a','','Rujukan formula');source.href=algorithm.source;source.target='_blank';source.rel='noopener noreferrer';details.append(source);content.append(details);
-    try{demo=new DemoCube(canvas,tokens,()=>Number(select.value),({index,playing,busy})=>{status.innerHTML=boldMoves(index===tokens.length?'✓ Formula selesai':`${index+1} / ${tokens.length} · ${tokens[index]} · ${C.describe(tokens[index])}`);[...formula.children].forEach((node,i)=>{node.classList.toggle('active',i===index);node.classList.toggle('done',i<index);});prev.disabled=busy||index===0;next.disabled=busy||index===tokens.length;reset.disabled=busy;play.disabled=index===tokens.length;play.textContent=playing?'Ⅱ Jeda':'▶ Main';});}
+    try{demo=new DemoCube(canvas,tokens,()=>Number(select.value),({index,playing,busy})=>{status.innerHTML=boldMoves(index===tokens.length?'Formula selesai':`${index+1} / ${tokens.length} · ${tokens[index]} · ${C.describe(tokens[index])}`);[...formula.children].forEach((node,i)=>{node.classList.toggle('active',i===index);node.classList.toggle('done',i<index);});prev.disabled=busy||index===0;next.disabled=busy||index===tokens.length;reset.disabled=busy;play.disabled=index===tokens.length;play.textContent=playing?'Jeda':'Main';});}
     catch{stage.replaceChildren(create('p','','Paparan 3D tidak tersedia. Gunakan gambar kes mula dan hasil akhir di bawah.'));prev.disabled=next.disabled=play.disabled=reset.disabled=true;}
   }
   class DemoCube{

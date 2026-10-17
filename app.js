@@ -490,7 +490,7 @@ document.addEventListener('keydown', event => {
       const cur = solutionStep;
       const stageIndex = solutionStages.findIndex(stage => cur >= stage.start && cur < stage.end);
       const stage = solutionStages[stageIndex];
-      document.getElementById('solutionStageTitle').textContent = stage ? stage.name : cur >= total ? '✓ Selesai' : '';
+      document.getElementById('solutionStageTitle').textContent = stage ? stage.name : cur >= total ? 'Selesai' : '';
       document.getElementById('solutionStageCount').textContent = stage ? `${stageIndex + 1} / ${solutionStages.length}` : '';
       const formula = solutionFormulas.find(formula => cur >= formula.start && cur < formula.end);
       const formulaBox = document.getElementById('solutionFormula');
@@ -515,10 +515,10 @@ document.addEventListener('keydown', event => {
       document.getElementById('btnAutoPlay').disabled = cur >= total;
 
       if (cur >= total) {
-        badge.textContent = '✓';
+        badge.textContent = 'OK';
         badge.className = 'w-11 h-11 rounded-xl bg-emerald-600 text-white font-extrabold text-lg flex items-center justify-center shadow-inner';
         counter.textContent = `Selesai (${total}/${total})`;
-        instr.textContent = '🎉 Kiub Rubik telah selesai!';
+        instr.textContent = 'Kiub Rubik telah selesai.';
       } else {
         const m = solutionMoves[cur];
         badge.textContent = MOVE_NAMES[m];
@@ -557,7 +557,7 @@ document.addEventListener('keydown', event => {
         return;
       }
       if (solutionStep >= solutionMoves.length) return;
-      document.getElementById('autoPlayIcon').textContent = '⏸';
+      document.getElementById('autoPlayIcon').className = 'ui-icon icon-pause';
       document.getElementById('autoPlayLabel').textContent = 'Jeda';
 
       const run = ++autoPlayRun;
@@ -584,7 +584,7 @@ document.addEventListener('keydown', event => {
         clearTimeout(autoPlayTimer);
         autoPlayTimer = null;
       }
-      document.getElementById('autoPlayIcon').textContent = '▶';
+      document.getElementById('autoPlayIcon').className = 'ui-icon icon-play';
       document.getElementById('autoPlayLabel').textContent = 'Auto';
     }
 

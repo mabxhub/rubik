@@ -1,6 +1,6 @@
 import {readFile,writeFile,cp,mkdir,rm} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-const files=['tutorial.css','tutorial.js','tutorial-moves.js','tutorial-methods.json','tutorial-algorithms.json','index.html','style.css','app.js','engine.js','solver-worker.js','staged-solver.js','pwa.js','manifest.webmanifest','vendor/three.min.js','icons/icon-192.png','icons/icon-512.png'];
+const files=['tutorial.css','tutorial.js','tutorial-moves.js','tutorial-methods.json','tutorial-algorithms.json','index.html','style.css','arcade.css','app.js','engine.js','solver-worker.js','staged-solver.js','pwa.js','manifest.webmanifest','vendor/three.min.js','icons/icon-192.png','icons/icon-512.png'];
 const hash=createHash('sha256');
 for(const file of [...files,'sw.template.js']) hash.update(await readFile(file));
 const version=hash.digest('hex').slice(0,16);
