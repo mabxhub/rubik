@@ -201,7 +201,7 @@
           }
           if (found) break;
         }
-        if (!found) return { valid: false, canAutoFix: true, error: 'Terdapat bucu (corner) dengan gabungan warna tidak sah.' };
+        if (!found) return { valid: false, canAutoFix: true, error: `Semak bucu ${CORNER_FACELETS[i].map(idx => FACE_NAMES[Math.floor(idx / 9)]).join('–')}: gabungan warna tidak sepadan dengan petak tengah.` };
       }
 
       const ep = new Array(12).fill(-1), eo = new Array(12).fill(0), usedEdges = new Array(12).fill(false);
@@ -218,7 +218,7 @@
             usedEdges[j] = true; ep[i] = j; eo[i] = 1; found = true; break;
           }
         }
-        if (!found) return { valid: false, canAutoFix: true, error: 'Terdapat tepi (edge) dengan gabungan warna tidak sah.' };
+        if (!found) return { valid: false, canAutoFix: true, error: `Semak tepi ${EDGE_FACELETS[i].map(idx => FACE_NAMES[Math.floor(idx / 9)]).join('–')}: gabungan warna tidak sepadan dengan petak tengah.` };
       }
 
       if (co.reduce((a, b) => a + b, 0) % 3 !== 0) {

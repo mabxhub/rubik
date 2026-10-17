@@ -33,3 +33,26 @@ test('invalid arrangement warns only after Solve is pressed',async()=>{
  assert.equal(a.element('statusBanner').classList.values.has('hidden'),true);
  await a.run('startSolveProcess()');assert.equal(a.element('statusBanner').classList.values.has('hidden'),false);
 });
+
+test('copying legal physical cube states through painting accepts arbitrary centre schemes and auto-white',()=>{
+ const a=app();
+ assert.equal(a.run(`(() => {
+   let seed=73;
+   for(let n=0;n<50;n++) {
+     let state=solvedCubie();
+     for(let j=0;j<24;j++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;state=multiplyCubie(state,ALL_MOVES[seed%18]);}
+     const scheme=n%2 ? [5,3,4,2,0,1] : [0,1,2,3,4,5];
+     const target=cubieToFacelets(state).map(c=>scheme[c]);
+     facelets=Array(54).fill(3);paintedMask=Array(54).fill(false);
+     for(let idx=0;idx<54;idx++){if(target[idx]===3)continue;selectedColor=target[idx];paintSticker(idx);}
+     if(!paintedMask.every(Boolean)||JSON.stringify(facelets)!==JSON.stringify(target)||!faceletsToCubie(facelets).valid)return false;
+   }
+   return true;
+ })()`),true);
+});
+test('invalid arrangement includes the specific validation reason',async()=>{
+ const a=app();a.run('facelets=cubieToFacelets(solvedCubie());paintedMask.fill(true);[facelets[5],facelets[10]]=[facelets[10],facelets[5]]');
+ const reason=a.run('faceletsToCubie(facelets).error');
+ await a.run('startSolveProcess()');
+ assert.equal(a.element('statusText').textContent,`Susunan warna tidak betul. ${reason}`);
+});

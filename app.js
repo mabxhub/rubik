@@ -431,7 +431,7 @@ document.addEventListener('keydown', event => {
       }
       const check = faceletsToCubie(facelets);
       if (!check.valid) {
-        showStatusBanner('Susunan warna tidak betul.');
+        showStatusBanner(`Susunan warna tidak betul. ${check.error}`);
         return;
       }
 

@@ -1,4 +1,4 @@
-const CACHE = 'rubik-55d473cdc27c2e15';
+const CACHE = 'rubik-ab5faac946e50f88';
 const ASSETS = ['./','index.html','style.css','vendor/three.min.js','engine.js','app.js','solver-worker.js','pwa.js','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS.map(path => new Request(path, {cache:'reload'})))));
