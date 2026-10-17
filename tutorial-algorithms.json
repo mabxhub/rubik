@@ -1,0 +1,962 @@
+[
+  {
+    "id": "oll-29",
+    "name": "OLL 29",
+    "group": "OLL",
+    "category": "Awkward Shape",
+    "alg": "R U R' U' R U' R' F' U' F R U R'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-30",
+    "name": "OLL 30",
+    "group": "OLL",
+    "category": "Awkward Shape",
+    "alg": "F R' F R2 U' R' U' R U R' F2",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-41",
+    "name": "OLL 41",
+    "group": "OLL",
+    "category": "Awkward Shape",
+    "alg": "R U R' U R U2 R' F R U R' U' F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-42",
+    "name": "OLL 42",
+    "group": "OLL",
+    "category": "Awkward Shape",
+    "alg": "R' U' R U' R' U2 R F R U R' U' F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-39",
+    "name": "OLL 39",
+    "group": "OLL",
+    "category": "Big Lightning Bolt",
+    "alg": "L F' L' U' L U F U' L'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-40",
+    "name": "OLL 40",
+    "group": "OLL",
+    "category": "Big Lightning Bolt",
+    "alg": "R' F R U R' U' F' U R",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-34",
+    "name": "OLL 34",
+    "group": "OLL",
+    "category": "C Shape",
+    "alg": "R U R2 U' R' F R U R U' F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-46",
+    "name": "OLL 46",
+    "group": "OLL",
+    "category": "C Shape",
+    "alg": "R' U' R' F R F' U R",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-28",
+    "name": "OLL 28",
+    "group": "OLL",
+    "category": "Corners Oriented",
+    "alg": "r U R' U' r' R U R U' R'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-57",
+    "name": "OLL 57",
+    "group": "OLL",
+    "category": "Corners Oriented",
+    "alg": "R U R' U' M' U R U' r'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-21",
+    "name": "OLL 21",
+    "group": "OLL",
+    "category": "Cross",
+    "alg": "R U2 R' U' R U R' U' R U' R'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-22",
+    "name": "OLL 22",
+    "group": "OLL",
+    "category": "Cross",
+    "alg": "R U2 R2 U' R2 U' R2 U2 R",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-23",
+    "name": "OLL 23",
+    "group": "OLL",
+    "category": "Cross",
+    "alg": "R2 D' R U2 R' D R U2 R",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-24",
+    "name": "OLL 24",
+    "group": "OLL",
+    "category": "Cross",
+    "alg": "r U R' U' r' F R F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-25",
+    "name": "OLL 25",
+    "group": "OLL",
+    "category": "Cross",
+    "alg": "F' r U R' U' r' F R",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-26",
+    "name": "OLL 26",
+    "group": "OLL",
+    "category": "Cross",
+    "alg": "R U2 R' U' R U' R'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-27",
+    "name": "OLL 27",
+    "group": "OLL",
+    "category": "Cross",
+    "alg": "R U R' U R U2 R'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-1",
+    "name": "OLL 1",
+    "group": "OLL",
+    "category": "Dot",
+    "alg": "R U2 R2 F R F' U2 R' F R F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-2",
+    "name": "OLL 2",
+    "group": "OLL",
+    "category": "Dot",
+    "alg": "r U r' U2 r U2 R' U2 R U' r'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-3",
+    "name": "OLL 3",
+    "group": "OLL",
+    "category": "Dot",
+    "alg": "r' R2 U R' U r U2 r' U M'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-4",
+    "name": "OLL 4",
+    "group": "OLL",
+    "category": "Dot",
+    "alg": "M U' r U2 r' U' R U' R' M'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-17",
+    "name": "OLL 17",
+    "group": "OLL",
+    "category": "Dot",
+    "alg": "F R' F' R2 r' U R U' R' U' M'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-18",
+    "name": "OLL 18",
+    "group": "OLL",
+    "category": "Dot",
+    "alg": "r U R' U R U2 r2 U' R U' R' U2 r",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-19",
+    "name": "OLL 19",
+    "group": "OLL",
+    "category": "Dot",
+    "alg": "r' R U R U R' U' M' R' F R F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-20",
+    "name": "OLL 20",
+    "group": "OLL",
+    "category": "Dot",
+    "alg": "r U R' U' M2 U R U' R' U' M'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-9",
+    "name": "OLL 9",
+    "group": "OLL",
+    "category": "Fish Shape",
+    "alg": "R U R' U' R' F R2 U R' U' F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-10",
+    "name": "OLL 10",
+    "group": "OLL",
+    "category": "Fish Shape",
+    "alg": "R U R' U R' F R F' R U2 R'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-35",
+    "name": "OLL 35",
+    "group": "OLL",
+    "category": "Fish Shape",
+    "alg": "R U2 R2 F R F' R U2 R'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-37",
+    "name": "OLL 37",
+    "group": "OLL",
+    "category": "Fish Shape",
+    "alg": "F R' F' R U R U' R'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-51",
+    "name": "OLL 51",
+    "group": "OLL",
+    "category": "I Shape",
+    "alg": "F U R U' R' U R U' R' F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-52",
+    "name": "OLL 52",
+    "group": "OLL",
+    "category": "I Shape",
+    "alg": "R U R' U R U' B U' B' R'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-55",
+    "name": "OLL 55",
+    "group": "OLL",
+    "category": "I Shape",
+    "alg": "R' F R U R U' R2 F' R2 U' R' U R U R'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-56",
+    "name": "OLL 56",
+    "group": "OLL",
+    "category": "I Shape",
+    "alg": "r' U' r U' R' U R U' R' U R r' U r",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-13",
+    "name": "OLL 13",
+    "group": "OLL",
+    "category": "Knight Move Shape",
+    "alg": "F U R U' R2 F' R U R U' R'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-14",
+    "name": "OLL 14",
+    "group": "OLL",
+    "category": "Knight Move Shape",
+    "alg": "R' F R U R' F' R F U' F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-15",
+    "name": "OLL 15",
+    "group": "OLL",
+    "category": "Knight Move Shape",
+    "alg": "l' U' l L' U' L U l' U l",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-16",
+    "name": "OLL 16",
+    "group": "OLL",
+    "category": "Knight Move Shape",
+    "alg": "r U r' R U R' U' r U' r'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-31",
+    "name": "OLL 31",
+    "group": "OLL",
+    "category": "P Shape",
+    "alg": "R' U' F U R U' R' F' R",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-32",
+    "name": "OLL 32",
+    "group": "OLL",
+    "category": "P Shape",
+    "alg": "L U F' U' L' U L F L'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-43",
+    "name": "OLL 43",
+    "group": "OLL",
+    "category": "P Shape",
+    "alg": "F' U' L' U L F",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-44",
+    "name": "OLL 44",
+    "group": "OLL",
+    "category": "P Shape",
+    "alg": "F U R U' R' F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-47",
+    "name": "OLL 47",
+    "group": "OLL",
+    "category": "Small L Shape",
+    "alg": "R' U' R' F R F' R' F R F' U R",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-48",
+    "name": "OLL 48",
+    "group": "OLL",
+    "category": "Small L Shape",
+    "alg": "F R U R' U' R U R' U' F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-49",
+    "name": "OLL 49",
+    "group": "OLL",
+    "category": "Small L Shape",
+    "alg": "r U' r2 U r2 U r2 U' r",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-50",
+    "name": "OLL 50",
+    "group": "OLL",
+    "category": "Small L Shape",
+    "alg": "r' U r2 U' r2 U' r2 U r'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-53",
+    "name": "OLL 53",
+    "group": "OLL",
+    "category": "Small L Shape",
+    "alg": "l' U2 L U L' U' L U L' U l",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-54",
+    "name": "OLL 54",
+    "group": "OLL",
+    "category": "Small L Shape",
+    "alg": "r U2 R' U' R U R' U' R U' r'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-7",
+    "name": "OLL 7",
+    "group": "OLL",
+    "category": "Small Lightning Bolt",
+    "alg": "r U R' U R U2 r'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-8",
+    "name": "OLL 8",
+    "group": "OLL",
+    "category": "Small Lightning Bolt",
+    "alg": "l' U' L U' L' U2 l",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-11",
+    "name": "OLL 11",
+    "group": "OLL",
+    "category": "Small Lightning Bolt",
+    "alg": "r U R' U R' F R F' R U2 r'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-12",
+    "name": "OLL 12",
+    "group": "OLL",
+    "category": "Small Lightning Bolt",
+    "alg": "M' R' U' R U' R' U2 R U' R r'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-5",
+    "name": "OLL 5",
+    "group": "OLL",
+    "category": "Square Shape",
+    "alg": "l' U2 L U L' U l",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-6",
+    "name": "OLL 6",
+    "group": "OLL",
+    "category": "Square Shape",
+    "alg": "r U2 R' U' R U' r'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-33",
+    "name": "OLL 33",
+    "group": "OLL",
+    "category": "T Shape",
+    "alg": "R U R' U' R' F R F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-45",
+    "name": "OLL 45",
+    "group": "OLL",
+    "category": "T Shape",
+    "alg": "F R U R' U' F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-36",
+    "name": "OLL 36",
+    "group": "OLL",
+    "category": "W Shape",
+    "alg": "L' U' L U' L' U L U L F' L' F",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "oll-38",
+    "name": "OLL 38",
+    "group": "OLL",
+    "category": "W Shape",
+    "alg": "R U R' U R U' R' U' R' F R F'",
+    "source": "https://jperm.net/algs/oll"
+  },
+  {
+    "id": "pll-aa",
+    "name": "PLL Aa",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "x L2 D2 L' U' L D2 L' U L'",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-ab",
+    "name": "PLL Ab",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "x' L2 D2 L U L' D2 L U' L",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-f",
+    "name": "PLL F",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-ga",
+    "name": "PLL Ga",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "R2 U R' U R' U' R U' R2 U' D R' U R D'",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-gb",
+    "name": "PLL Gb",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "R' U' R U D' R2 U R' U R U' R U' R2 D",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-gc",
+    "name": "PLL Gc",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "R2 U' R U' R U R' U R2 U D' R U' R' D",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-gd",
+    "name": "PLL Gd",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "R U R' U' D R2 U' R U' R' U R' U R2 D'",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-ja",
+    "name": "PLL Ja",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "x R2 F R F' R U2 r' U r U2",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-jb",
+    "name": "PLL Jb",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "R U R' F' R U R' U' R' F R2 U' R'",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-ra",
+    "name": "PLL Ra",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "R U' R' U' R U R D R' U' R D' R' U2 R'",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-rb",
+    "name": "PLL Rb",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "R2 F R U R U' R' F' R U2 R' U2 R",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-t",
+    "name": "PLL T",
+    "group": "PLL",
+    "category": "Adjacent Corner Swap",
+    "alg": "R U R' U' R' F R2 U' R' U' R U R' F'",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-e",
+    "name": "PLL E",
+    "group": "PLL",
+    "category": "Diagonal Corner Swap",
+    "alg": "x' L' U L D' L' U' L D L' U' L D' L' U L D",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-na",
+    "name": "PLL Na",
+    "group": "PLL",
+    "category": "Diagonal Corner Swap",
+    "alg": "R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-nb",
+    "name": "PLL Nb",
+    "group": "PLL",
+    "category": "Diagonal Corner Swap",
+    "alg": "R' U R U' R' F' U' F R U R' F R' F' R U' R",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-v",
+    "name": "PLL V",
+    "group": "PLL",
+    "category": "Diagonal Corner Swap",
+    "alg": "R' U R' U' y R' F' R2 U' R' U R' F R F",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-y",
+    "name": "PLL Y",
+    "group": "PLL",
+    "category": "Diagonal Corner Swap",
+    "alg": "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-h",
+    "name": "PLL H",
+    "group": "PLL",
+    "category": "Edges Only",
+    "alg": "M2 U M2 U2 M2 U M2",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-ua",
+    "name": "PLL Ua",
+    "group": "PLL",
+    "category": "Edges Only",
+    "alg": "M2 U M U2 M' U M2",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-ub",
+    "name": "PLL Ub",
+    "group": "PLL",
+    "category": "Edges Only",
+    "alg": "M2 U' M U2 M' U' M2",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "pll-z",
+    "name": "PLL Z",
+    "group": "PLL",
+    "category": "Edges Only",
+    "alg": "M' U M2 U M2 U M' U2 M2",
+    "source": "https://jperm.net/algs/pll"
+  },
+  {
+    "id": "cmll-1",
+    "name": "CMLL O · Adjacent Swap",
+    "group": "CMLL",
+    "category": "O",
+    "alg": "R U R' F' R U R' U' R' F R2 U' R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-2",
+    "name": "CMLL O · Diagonal Swap",
+    "group": "CMLL",
+    "category": "O",
+    "alg": "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-3",
+    "name": "CMLL H · Columns",
+    "group": "CMLL",
+    "category": "H",
+    "alg": "R U2 R' U' R U R' U' R U' R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-4",
+    "name": "CMLL H · Rows",
+    "group": "CMLL",
+    "category": "H",
+    "alg": "F R U R' U' R U R' U' R U R' U' F'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-5",
+    "name": "CMLL H · Column",
+    "group": "CMLL",
+    "category": "H",
+    "alg": "(U) R U2' R2' F R F' U2 R' F R F'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-6",
+    "name": "CMLL H · Row",
+    "group": "CMLL",
+    "category": "H",
+    "alg": "(U2) r U' r2' D' r U' r' D r2 U r'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-7",
+    "name": "CMLL Pi · Right Bar",
+    "group": "CMLL",
+    "category": "Pi",
+    "alg": "F R U R' U' R U R' U' F'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-8",
+    "name": "CMLL Pi · Back Slash",
+    "group": "CMLL",
+    "category": "Pi",
+    "alg": "(U) F R' F' R U2 R U' R' U R U2' R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-9",
+    "name": "CMLL Pi · X Checkerboard",
+    "group": "CMLL",
+    "category": "Pi",
+    "alg": "(U') R' F R U F U' R U R' U' F'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-10",
+    "name": "CMLL Pi · Forward Slash",
+    "group": "CMLL",
+    "category": "Pi",
+    "alg": "R U2 R' U' R U R' U2' R' F R F'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-11",
+    "name": "CMLL Pi · Columns",
+    "group": "CMLL",
+    "category": "Pi",
+    "alg": "(U') r U' r2' D' r U r' D r2 U r'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-12",
+    "name": "CMLL Pi · Left Bar",
+    "group": "CMLL",
+    "category": "Pi",
+    "alg": "(U') R' U' R' F R F' R U' R' U2 R",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-13",
+    "name": "CMLL U · Forward Slash",
+    "group": "CMLL",
+    "category": "U",
+    "alg": "(U2) R2 D R' U2 R D' R' U2 R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-14",
+    "name": "CMLL U · Back Slash",
+    "group": "CMLL",
+    "category": "U",
+    "alg": "R2' D' R U2 R' D R U2 R",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-15",
+    "name": "CMLL U · Front Row",
+    "group": "CMLL",
+    "category": "U",
+    "alg": "R2' F U' F U F2 R2 U' R' F R",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-16",
+    "name": "CMLL U · Rows",
+    "group": "CMLL",
+    "category": "U",
+    "alg": "(U') F R2 D R' U R D' R2' U' F'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-17",
+    "name": "CMLL U · X Checkerboard",
+    "group": "CMLL",
+    "category": "U",
+    "alg": "(U2) r U' r' U r' D' r U' r' D r",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-18",
+    "name": "CMLL U · Back Row",
+    "group": "CMLL",
+    "category": "U",
+    "alg": "(U') F R U R' U' F'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-19",
+    "name": "CMLL T · Left Bar",
+    "group": "CMLL",
+    "category": "T",
+    "alg": "(U') R U R' U' R' F R F'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-20",
+    "name": "CMLL T · Right Bar",
+    "group": "CMLL",
+    "category": "T",
+    "alg": "(U) L' U' L U L F' L' F",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-21",
+    "name": "CMLL T · Rows",
+    "group": "CMLL",
+    "category": "T",
+    "alg": "F R' F R2 U' R' U' R U R' F2",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-22",
+    "name": "CMLL T · Front Row",
+    "group": "CMLL",
+    "category": "T",
+    "alg": "r' U r U2' R2' F R F' R",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-23",
+    "name": "CMLL T · Back Row",
+    "group": "CMLL",
+    "category": "T",
+    "alg": "r' D' r U r' D r U' r U r'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-24",
+    "name": "CMLL T · Columns",
+    "group": "CMLL",
+    "category": "T",
+    "alg": "r2' D' r U r' D r2 U' r' U' r",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-25",
+    "name": "CMLL S · Left Bar",
+    "group": "CMLL",
+    "category": "S",
+    "alg": "(U) R U R' U R U2 R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-26",
+    "name": "CMLL S · X Checkerboard",
+    "group": "CMLL",
+    "category": "S",
+    "alg": "(U) L' U2 L U2' L F' L' F",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-27",
+    "name": "CMLL S · Forward Slash",
+    "group": "CMLL",
+    "category": "S",
+    "alg": "(U) F R' F' R U2 R U2' R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-28",
+    "name": "CMLL S · Columns",
+    "group": "CMLL",
+    "category": "S",
+    "alg": "(U) R U R' U' R' F R F' R U R' U R U2' R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-29",
+    "name": "CMLL S · Right Bar",
+    "group": "CMLL",
+    "category": "S",
+    "alg": "R U R' U R' F R F' R U2' R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-30",
+    "name": "CMLL S · Back Slash",
+    "group": "CMLL",
+    "category": "S",
+    "alg": "(U) R U' L' U R' U' L",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-31",
+    "name": "CMLL As · Right Bar",
+    "group": "CMLL",
+    "category": "As",
+    "alg": "(U) R' U' R U' R' U2' R",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-32",
+    "name": "CMLL As · Columns",
+    "group": "CMLL",
+    "category": "As",
+    "alg": "(U') R2 D R' U R D' R' U R' U' R U' R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-33",
+    "name": "CMLL As · Back Slash",
+    "group": "CMLL",
+    "category": "As",
+    "alg": "(U') F' L F L' U2' L' U2 L",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-34",
+    "name": "CMLL As · X Checkerboard",
+    "group": "CMLL",
+    "category": "As",
+    "alg": "(U') R U2' R' U2 R' F R F'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-35",
+    "name": "CMLL As · Forward Slash",
+    "group": "CMLL",
+    "category": "As",
+    "alg": "(U') L' U R U' L U R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-36",
+    "name": "CMLL As · Left Bar",
+    "group": "CMLL",
+    "category": "As",
+    "alg": "R' U' R U' R' U R' F R F' U R",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-37",
+    "name": "CMLL L · Mirror",
+    "group": "CMLL",
+    "category": "L",
+    "alg": "(U2) F R U' R' U' R U R' F'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-38",
+    "name": "CMLL L · Inverse",
+    "group": "CMLL",
+    "category": "L",
+    "alg": "(U2) F R' F' R U R U' R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-39",
+    "name": "CMLL L · Pure",
+    "group": "CMLL",
+    "category": "L",
+    "alg": "R U2 R' U' R U R' U' R U R' U' R U' R'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-40",
+    "name": "CMLL L · Front Commutator",
+    "group": "CMLL",
+    "category": "L",
+    "alg": "(U2) R U2 R D R' U2 R D' R2'",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-41",
+    "name": "CMLL L · Diagonal",
+    "group": "CMLL",
+    "category": "L",
+    "alg": "R' U' R U R' F' R U R' U' R' F R2",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "cmll-42",
+    "name": "CMLL L · Back Commutator",
+    "group": "CMLL",
+    "category": "L",
+    "alg": "(U) R' U2 R' D' R U2 R' D R2",
+    "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  }
+]

@@ -1,0 +1,843 @@
+{
+  "methods": [
+    {
+      "id": "notation",
+      "name": "Asas & notasi",
+      "english": "Notation & terminology",
+      "level": "Mula di sini",
+      "summary": "Kenali muka, arah pusingan dan cara membaca formula.",
+      "sources": [
+        "https://jperm.net/3x3/moves"
+      ],
+      "steps": [
+        {
+          "title": "Kenali bahagian kiub",
+          "diagram": "solved",
+          "body": [
+            "Petak tengah (center) mempunyai satu warna dan menentukan nama warna setiap muka. Tepi (edge) mempunyai dua warna. Bucu (corner) mempunyai tiga warna.",
+            "Dalam rajah ini: U = atas (Up), D = bawah (Down), F = depan (Front), B = belakang (Back), R = kanan (Right), L = kiri (Left). Huruf merujuk kedudukan, bukan warna tertentu."
+          ]
+        },
+        {
+          "title": "Arah pusingan",
+          "diagram": "solved",
+          "body": [
+            "R bermaksud 90° ikut jam (clockwise) apabila melihat terus muka R. R′ atau R' bermaksud 90° lawan jam (counterclockwise). R2 bermaksud 180°.",
+            "Jangan menilai arah R dari pandangan muka F. Bayangkan anda melihat tepat ke muka yang akan dipusing."
+          ],
+          "algs": [
+            "trigger",
+            "left-trigger"
+          ]
+        },
+        {
+          "title": "Lapisan tengah & pusingan seluruh kiub",
+          "diagram": "line",
+          "body": [
+            "M ialah hirisan tengah (middle slice) mengikut arah L. E mengikut arah D; S mengikut arah F. Huruf kecil r atau Rw bermaksud dua lapisan kanan sekali gus (wide move).",
+            "x memusing seluruh kiub mengikut R; y mengikut U; z mengikut F. Jika formula mengandungi x atau y, ikuti perubahan muka semasa formula berlangsung."
+          ],
+          "algs": [
+            "lse-insert",
+            "pll-h"
+          ]
+        },
+        {
+          "title": "Cara belajar formula",
+          "diagram": "f2l",
+          "body": [
+            "Baca dari kiri ke kanan. Kurungan mengumpulkan picu (trigger); (R U R′ U′)6 bermaksud ulang kumpulan itu enam kali. AUF (Adjust U Face) ialah pelarasan U, U′ atau U2 sebelum/selepas formula.",
+            "Pemain bermula daripada kes contoh yang tepat untuk formula dipilih. Padankan keenam-enam muka pada rajah sebelum meniru pada kiub sebenar."
+          ],
+          "algs": [
+            "sexy-six"
+          ],
+          "tip": "Warna contoh mengikuti skema aplikasi. Pada kiub sebenar, ikut petak tengah; jangan bergantung pada warna hadapan yang sama."
+        }
+      ]
+    },
+    {
+      "id": "beginner",
+      "name": "Kaedah pemula",
+      "english": "Layer by Layer · LBL",
+      "level": "Pemula",
+      "summary": "Tujuh langkah dari salib putih hingga kiub selesai.",
+      "sources": [
+        "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+      ],
+      "steps": [
+        {
+          "title": "1. Salib putih",
+          "diagram": "cross",
+          "body": [
+            "Pegang pusat putih di D dan kuning di U. Cari empat tepi putih dan bina salib (white cross) pada D. Setiap warna sisi tepi mesti sama dengan pusat F, R, B atau L.",
+            "Cara bunga daisi (daisy): kumpulkan tepi putih mengelilingi pusat kuning di U. Putar U sehingga warna sisi tepi sama dengan pusat di bawahnya, kemudian pusing muka itu 180°. Ulang untuk empat tepi."
+          ],
+          "tip": "Empat putih pada D sahaja belum mencukupi. Semak juga empat padanan pusat sisi."
+        },
+        {
+          "title": "2. Lengkapkan bucu putih",
+          "diagram": "layer1",
+          "body": [
+            "Cari bucu putih. Padankan dua warna lain dengan dua pusat sisi dan letakkan bucu di atas ruang tujuannya, pada UFR. Kekalkan putih di bawah.",
+            "Gunakan picu kanan berulang sehingga bucu masuk dengan betul. Untuk bucu lain, pusing seluruh kiub pada paksi y supaya ruang sasaran kembali di depan-kanan. Jika bucu sudah di bawah tetapi salah, keluarkannya dahulu."
+          ],
+          "algs": [
+            "trigger"
+          ],
+          "tip": "Picu yang sama mungkin perlu diulang mengikut arah putih pada bucu. Berhenti dan periksa selepas setiap kumpulan empat pusingan."
+        },
+        {
+          "title": "3. Lapisan kedua",
+          "diagram": "f2l",
+          "body": [
+            "Di U, pilih tepi tanpa warna kuning. Putar U supaya warna pada muka sisi tepi sepadan dengan pusat F. Jika warna di atas sepadan pusat R, guna Masuk kanan; jika sepadan pusat L, guna Masuk kiri.",
+            "Jika tiada tepi sesuai di U tetapi lapisan kedua belum siap, gunakan salah satu formula untuk mengeluarkan tepi yang tersalah masuk. Padankan semula sebelum memasukkannya."
+          ],
+          "algs": [
+            "middle-right",
+            "middle-left"
+          ]
+        },
+        {
+          "title": "4. Salib kuning",
+          "diagram": "yellowcross",
+          "body": [
+            "Abaikan bucu kuning buat sementara. Untuk bentuk garis, pegang garis melintang dari kiri ke kanan. Untuk bentuk L, pegang tepi kuning di UB dan UL. Laksanakan formula salib.",
+            "Kes titik: buat formula sekali untuk mendapat L, laras U, kemudian buat lagi. Semak bentuk selepas setiap kali. Sasaran ialah empat tepi kuning menghadap U, bukan seluruh muka kuning."
+          ],
+          "algs": [
+            "yellow-cross"
+          ]
+        },
+        {
+          "title": "5. Padankan tepi kuning",
+          "diagram": "edges",
+          "body": [
+            "Putar U untuk memadankan sebanyak mungkin warna sisi tepi dengan pusat. Jika dua padanan bersebelahan, susun di B dan R lalu laksanakan kitar tepi.",
+            "Jika dua padanan bertentangan, lakukan formula sekali untuk menukar kepada kes bersebelahan, kemudian laras U dan ulang. Selepas formula, cuba AUF supaya semua empat tepi sepadan."
+          ],
+          "algs": [
+            "beginner-edges"
+          ]
+        },
+        {
+          "title": "6. Letakkan bucu di tempat betul",
+          "diagram": "corners",
+          "body": [
+            "Bucu di tempat betul apabila tiga warnanya sepadan dengan tiga pusat sekeliling, walaupun kuning belum menghadap atas. Jika ada satu bucu betul, pegang pada UFR.",
+            "Lakukan kitar bucu dan periksa semula. Ulang sehingga semua empat bucu berada di tempat yang betul. Jika tiada bucu betul, lakukan sekali, kemudian cari bucu yang betul."
+          ],
+          "algs": [
+            "corner-cycle"
+          ]
+        },
+        {
+          "title": "7. Arahkan bucu kuning",
+          "diagram": "solved",
+          "body": [
+            "Pegang bucu belum siap di UFR. Ulang R′ D′ R D dua atau empat kali sehingga kuning bucu itu menghadap U. Sentiasa lengkapkan keempat-empat pusingan setiap kumpulan.",
+            "Tanpa memusing seluruh kiub, putar U sahaja untuk membawa bucu belum siap seterusnya ke UFR. Ulang. Apabila semua bucu siap, laraskan U untuk melengkapkan kiub."
+          ],
+          "algs": [
+            "corner-twist"
+          ],
+          "tip": "Lapisan bawah kelihatan rosak sementara pada langkah ini. Jangan tukar pegangan atau cuba membaikinya di tengah jalan; habiskan semua bucu dalam orientasi yang sama."
+        }
+      ]
+    },
+    {
+      "id": "cfop2",
+      "name": "CFOP mudah",
+      "english": "2-Look OLL & PLL",
+      "level": "Pertengahan",
+      "summary": "Laluan selepas LBL: pasangan F2L dan lapisan akhir dua peringkat.",
+      "sources": [
+        "https://jperm.net/3x3/cfop"
+      ],
+      "steps": [
+        {
+          "title": "1. Cross di bawah",
+          "diagram": "cross",
+          "body": [
+            "Bina salib pada D sambil merancang kedudukan tepi seterusnya. Cuba elakkan memusing seluruh kiub berulang kali. Pusat sisi mesti sepadan sebelum beralih ke F2L."
+          ]
+        },
+        {
+          "title": "2. Empat pasangan F2L",
+          "diagram": "f2l",
+          "body": [
+            "First Two Layers (F2L) menyelesaikan satu bucu dan satu tepi sebagai pasangan (pair). Cari pasangan yang berkongsi dua warna sisi dan satu warna D.",
+            "Bawa kedua-duanya ke U, jauhkan bucu daripada ruang sasaran untuk memasangkan, kemudian masukkan pasangan tanpa merosakkan cross. Dua formula di bawah ialah contoh kes, bukannya formula universal untuk semua F2L."
+          ],
+          "algs": [
+            "f2l-insert",
+            "f2l-mirror"
+          ]
+        },
+        {
+          "title": "3. 2-Look OLL: tepi",
+          "diagram": "yellowcross",
+          "body": [
+            "Orientation of the Last Layer (OLL) mengarahkan petak U ke atas. Mulakan dengan empat tepi: titik → L → garis → salib. Bagi garis pegang mendatar; bagi L pegang di UB dan UL."
+          ],
+          "algs": [
+            "yellow-cross"
+          ]
+        },
+        {
+          "title": "4. 2-Look OLL: bucu",
+          "diagram": "oll",
+          "body": [
+            "Selepas salib, kenali tujuh kes bucu: Sune, Anti-Sune, H, Pi, U, T dan L. Pilih kes dalam pustaka dan padankan gambar; laraskan U dahulu jika diperlukan."
+          ],
+          "algs": [
+            "oll-21",
+            "oll-22",
+            "oll-23",
+            "oll-24",
+            "oll-25",
+            "oll-26",
+            "oll-27"
+          ]
+        },
+        {
+          "title": "5. 2-Look PLL: bucu",
+          "diagram": "oll",
+          "body": [
+            "Permutation of the Last Layer (PLL) menukar kedudukan tanpa mengubah orientasi U. Cari pasangan warna sama di sisi dua bucu (headlights).",
+            "Pertukaran bersebelahan boleh dibuat menggunakan T-perm; pertukaran diagonal menggunakan Y-perm. Padankan kes contoh dan gunakan AUF untuk menyelaraskan kedudukan."
+          ],
+          "algs": [
+            "pll-t",
+            "pll-y"
+          ]
+        },
+        {
+          "title": "6. 2-Look PLL: tepi",
+          "diagram": "solved",
+          "body": [
+            "Selepas bucu selesai, tinggal Ua, Ub, H atau Z untuk tepi. Cari sisi yang sudah selesai serta arah kitar tiga tepi. Gunakan rajah kes, bukan meneka Ua atau Ub.",
+            "Laksanakan formula yang sepadan, kemudian laraskan U jika perlu. Sekarang kiub selesai."
+          ],
+          "algs": [
+            "pll-ua",
+            "pll-ub",
+            "pll-h",
+            "pll-z"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cfop",
+      "name": "CFOP penuh",
+      "english": "Cross · F2L · OLL · PLL",
+      "level": "Lanjutan",
+      "summary": "57 OLL dan 21 PLL, masing-masing dengan gambar kes dan pemain.",
+      "sources": [
+        "https://jperm.net/3x3/cfop",
+        "https://jperm.net/algs/oll",
+        "https://jperm.net/algs/pll"
+      ],
+      "steps": [
+        {
+          "title": "Cross & perancangan",
+          "diagram": "cross",
+          "body": [
+            "Semasa pemeriksaan (inspection), rancang empat tepi cross pada D. Latih penyelesaian tanpa melihat cross selepas pusingan pertama. Fikirkan pusat warna dan tepi pertama F2L serentak."
+          ]
+        },
+        {
+          "title": "F2L intuitif & lookahead",
+          "diagram": "f2l",
+          "body": [
+            "Bina empat pasangan bucu–tepi. Pisahkan pasangan yang tidak sepadan, satukan di U dan masukkan ke ruang yang betul. Gunakan ruang belum selesai untuk bekerja.",
+            "Lookahead bermaksud mencari pasangan seterusnya semasa tangan menyiapkan pasangan semasa. Dahulukan pergerakan lancar; kurangkan berhenti sebelum cuba lebih laju."
+          ],
+          "algs": [
+            "f2l-insert",
+            "f2l-mirror",
+            "trigger"
+          ]
+        },
+        {
+          "title": "57 kes OLL",
+          "diagram": "oll",
+          "body": [
+            "Dengan F2L siap, kenali corak kuning pada U serta petak kuning di sisi lapisan atas. OLL penuh mengarahkan seluruh muka U dengan satu formula.",
+            "Pilih satu kes untuk melihat semua enam muka dan pusingannya. Warna sisi dalam kes OLL boleh berbeza; yang penting ialah orientasi U dan dua lapisan bawah yang sudah siap."
+          ],
+          "library": "OLL"
+        },
+        {
+          "title": "21 kes PLL",
+          "diagram": "solved",
+          "body": [
+            "Selepas U siap, kenali blok warna dan headlights pada sisi lapisan atas. PLL penuh menyelesaikan kedudukan dengan satu formula, diikuti AUF jika perlu.",
+            "Jika formula menggunakan x atau y, pusing seluruh kiub seperti ditunjukkan pemain. Huruf muka selepas putaran merujuk muka pada kedudukan baharu."
+          ],
+          "library": "PLL"
+        }
+      ]
+    },
+    {
+      "id": "roux",
+      "name": "Roux",
+      "english": "Blockbuilding · CMLL · LSE",
+      "level": "Pertengahan",
+      "summary": "Dua blok, empat bucu atas dan enam tepi terakhir.",
+      "sources": [
+        "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+      ],
+      "steps": [
+        {
+          "title": "1. First Block (FB)",
+          "diagram": "block1",
+          "body": [
+            "Bina blok 1×2×3 di kiri-bawah. Selesaikan tepi DL bersama dua pasangan bucu–tepi di sekelilingnya. Anda belum perlu membina salib.",
+            "Blockbuilding ialah membina kumpulan kepingan yang sudah sepadan. Cuba gabungkan pasangan kecil dahulu sebelum memasukkannya bersama."
+          ]
+        },
+        {
+          "title": "2. Second Block (SB)",
+          "diagram": "blocks",
+          "body": [
+            "Bina blok kedua 1×2×3 di kanan-bawah sambil mengekalkan blok kiri. Gunakan R, U, r dan M untuk menyediakan pasangan. Hirisan M masih boleh bergerak.",
+            "Selepas langkah ini, kiri dan kanan lapisan bawah siap. Enam tepi di U dan hirisan tengah masih bebas."
+          ]
+        },
+        {
+          "title": "3. CMLL dua peringkat",
+          "diagram": "cmll",
+          "body": [
+            "Corners of the Last Layer tanpa menjaga hirisan M: arahkan bucu menggunakan Sune/Anti-Sune, kemudian susun bucu dengan Jb atau Y.",
+            "Ulang orientasi dengan pegangan yang sesuai sehingga semua bucu U menghadap atas. Kemudian padankan kes pertukaran bucu; gunakan AUF di antara peringkat."
+          ],
+          "algs": [
+            "sune",
+            "antisune",
+            "pll-jb",
+            "pll-y"
+          ]
+        },
+        {
+          "title": "4. Pustaka 42 CMLL",
+          "diagram": "cmll",
+          "body": [
+            "Untuk satu peringkat, kenali kumpulan O, H, Pi, U, T, S, As dan L. Padankan warna bucu dan gunakan satu formula. Tepi tengah dalam rajah hanyalah contoh dan tidak penting bagi pengecaman CMLL."
+          ],
+          "library": "CMLL"
+        },
+        {
+          "title": "5. LSE: orientasi & tepi sisi",
+          "diagram": "cmll",
+          "body": [
+            "Last Six Edges (LSE) melengkapkan enam tepi. Laluan mudah: sejajarkan pusat F/B menggunakan M, kemudian masukkan DF dan DB tanpa merosakkan blok.",
+            "Untuk kes dua tepi U sudah berorientasi dan bersebelahan, letakkannya di UL dan UF, kemudian gunakan formula orientasi. Jika tiada yang berorientasi, lakukan formula sekali dan kenal pasti semula."
+          ],
+          "algs": [
+            "lse-insert",
+            "lse-orient"
+          ]
+        },
+        {
+          "title": "6. LSE: empat tepi terakhir",
+          "diagram": "solved",
+          "body": [
+            "Apabila bucu dan orientasi sudah betul, selesaikan permutasi tepi dengan pusingan M dan U. Kenali Ua, Ub, H atau Z, kemudian sejajarkan pusat dengan M/M2 jika perlu."
+          ],
+          "algs": [
+            "pll-ua",
+            "pll-ub",
+            "pll-h",
+            "pll-z"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zz",
+      "name": "ZZ",
+      "english": "EOLine · F2L · Last Layer",
+      "level": "Lanjutan",
+      "summary": "Orientasikan tepi dahulu, kemudian bina blok dengan R, U dan L.",
+      "sources": [
+        "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/zz-method/"
+      ],
+      "steps": [
+        {
+          "title": "1. Kenali orientasi tepi (EO)",
+          "diagram": "line",
+          "body": [
+            "Tetapkan U/D dan F/B dahulu. Pada muka U/D, tepi yang memaparkan warna pusat L/R adalah buruk (bad edge). Jika warna yang kelihatan ialah F/B dan warna pasangannya U/D, tepi itu juga buruk. Jika U/D kelihatan, tepi itu baik.",
+            "Untuk empat tepi di hirisan tengah, periksa petak pada F/B dengan peraturan sama. Jumlah bad edges mestilah genap. Ini tentang orientasi kepingan, bukan sama ada warna sudah di tempatnya."
+          ]
+        },
+        {
+          "title": "2. EOLine",
+          "diagram": "line",
+          "body": [
+            "Bawa empat tepi buruk ke muka F atau B menggunakan U, D, R, L dan separuh pusingan F2/B2. Pusing F atau B 90° untuk membalik orientasi keempat-empat tepi tersebut; periksa semula.",
+            "Selepas semua tepi baik, letakkan DF dan DB di tempatnya untuk membentuk garis pada D. Inilah EOLine: Edge Orientation + Line. Jangan ubah pegangan paksi selepas EO."
+          ]
+        },
+        {
+          "title": "3. F2L dengan RUL",
+          "diagram": "f2l",
+          "body": [
+            "Bina blok kiri dan kanan menggunakan R, U dan L sambil mengekalkan garis serta EO. Masukkan tepi DL/DR kemudian pasangan bucu–tepi. Elakkan F/B suku pusingan kerana ia mengubah EO."
+          ],
+          "algs": [
+            "f2l-insert",
+            "f2l-mirror"
+          ]
+        },
+        {
+          "title": "4. OCLL & PLL",
+          "diagram": "solved",
+          "body": [
+            "Tepi atas sudah berorientasi, jadi hanya tujuh kes orientasi bucu (OCLL) diperlukan sebelum PLL. Mulakan dengan tujuh kes OLL 21 hingga 27, kemudian 21 kes PLL.",
+            "ZBLL ialah sambungan lanjutan yang menyatukan orientasi bucu dan permutasi, tetapi bukan syarat untuk menyelesaikan dengan ZZ."
+          ],
+          "algs": [
+            "oll-21",
+            "oll-22",
+            "oll-23",
+            "oll-24",
+            "oll-25",
+            "oll-26",
+            "oll-27"
+          ],
+          "library": "PLL"
+        }
+      ]
+    },
+    {
+      "id": "petrus",
+      "name": "Petrus",
+      "english": "2×2×2 → 2×2×3 → EO",
+      "level": "Pertengahan",
+      "summary": "Bina blok, betulkan orientasi, kemudian lengkapkan dua lapisan.",
+      "sources": [
+        "https://lar5.com/cube/"
+      ],
+      "steps": [
+        {
+          "title": "1. Blok 2×2×2",
+          "diagram": "block222",
+          "body": [
+            "Pilih satu bucu dan gabungkan dengan tiga tepi serta tiga pusat sekeliling untuk membentuk blok 2×2×2. Cari pasangan yang sudah terbina dan manfaatkannya.",
+            "Rajah menunjukkan contoh blok kiri-belakang-bawah. Blok boleh bermula di mana-mana bucu; setelah dipilih, kekalkan orientasinya."
+          ]
+        },
+        {
+          "title": "2. Kembangkan ke 2×2×3",
+          "diagram": "block223",
+          "body": [
+            "Tambah satu pasangan bucu–tepi serta satu tepi untuk memanjangkan blok. Putar muka yang masih bebas supaya blok asal tidak pecah. Jangan membina satu muka penuh terlalu awal."
+          ]
+        },
+        {
+          "title": "3. Orientasi tepi (EO)",
+          "diagram": "block223",
+          "body": [
+            "Periksa tepi di luar blok. Betulkan tepi yang terbalik dengan membawa pasangan tepi buruk ke kedudukan kerja dan melakukan pusingan yang membalik orientasinya.",
+            "Pilih pegangan dengan dua muka bersebelahan yang masih bebas. Sasaran langkah ini ialah semua tepi boleh diselesaikan tanpa merosakkan blok; bilangan tepi buruk adalah genap. Baca contoh EO dalam rujukan Lars Petrus untuk pasangan kes berbeza."
+          ]
+        },
+        {
+          "title": "4. Lengkapkan dua lapisan",
+          "diagram": "f2l",
+          "body": [
+            "Selepas EO, bina bahagian F2L yang tinggal menggunakan dua muka bebas. Pasang bucu–tepi sebelum memasukkan dan jaga blok asal. Putaran separuh muka boleh membantu persediaan."
+          ]
+        },
+        {
+          "title": "5. Kedudukan & orientasi bucu",
+          "diagram": "oll",
+          "body": [
+            "Laluan Petrus asal: letakkan bucu dahulu, kemudian arahkan bucu. Pegang satu bucu yang sudah di tempat betul di UFR untuk formula kitar. Selepas kedudukan siap, gunakan orientasi bucu yang sesuai.",
+            "Sebagai variasi pembelajaran, anda juga boleh menamatkan dari F2L dengan OCLL kemudian PLL seperti ZZ."
+          ],
+          "algs": [
+            "corner-cycle",
+            "sune",
+            "antisune"
+          ]
+        },
+        {
+          "title": "6. Kedudukan tepi terakhir",
+          "diagram": "solved",
+          "body": [
+            "Apabila orientasi U dan bucu betul, kenali kitar tepi Ua/Ub atau pertukaran H/Z. Gunakan formula yang sepadan dan akhiri dengan AUF."
+          ],
+          "algs": [
+            "pll-ua",
+            "pll-ub",
+            "pll-h",
+            "pll-z"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heise",
+      "name": "Heise",
+      "english": "Squares · EO · Commutators",
+      "level": "Lanjutan",
+      "summary": "Kaedah intuitif yang menekankan struktur dan kitar tiga kepingan.",
+      "sources": [
+        "https://www.ryanheise.com/cube/heise_method.html"
+      ],
+      "steps": [
+        {
+          "title": "1. Empat petak 2×2",
+          "diagram": "squares",
+          "body": [
+            "Bina empat blok berbentuk petak (squares) daripada pusat, tepi dan bucu. Pada peringkat awal, warna antara petak yang berlainan belum semestinya perlu sepadan.",
+            "Pilih petak yang sudah hampir siap. Ini latihan membina blok, bukan menghafal satu formula tetap."
+          ]
+        },
+        {
+          "title": "2. Padankan petak & EO",
+          "diagram": "f2l",
+          "body": [
+            "Selaraskan empat petak supaya warna pusatnya sepadan, sambil membetulkan orientasi tepi yang tinggal. Pada awal pembelajaran, lakukan kedua-dua tugas ini berasingan.",
+            "Jaga petak yang telah dipadankan dan gunakan ruang yang masih bebas untuk persediaan."
+          ]
+        },
+        {
+          "title": "3. Tepi & dua bucu",
+          "diagram": "corners",
+          "body": [
+            "Selesaikan tepi yang tinggal serta mana-mana dua bucu. Tinggalkan tiga bucu terakhir untuk kitar tiga (3-cycle).",
+            "Kenal pasti tiga kepingan sasaran dan arah kitarnya. Jika perlu, gunakan setup moves untuk membawa sasaran ke kedudukan kerja."
+          ]
+        },
+        {
+          "title": "4. Tiga bucu terakhir",
+          "diagram": "solved",
+          "body": [
+            "Gunakan commutator A B A⁻¹ B⁻¹ yang sepadan dengan sasaran. Bahagian A membawa satu kepingan ke ruang kerja; B menukar lapisan kerja; A⁻¹ dan B⁻¹ memulihkan yang lain.",
+            "Formula contoh di bawah menerangkan struktur, bukan formula universal untuk semua baki tiga bucu. Lihat kes awal dan semua kesannya sebelum menggunakannya."
+          ],
+          "algs": [
+            "commutator"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blindfold",
+      "name": "Tutup mata",
+      "english": "Old Pochmann · Blindfolded",
+      "level": "Lanjutan",
+      "summary": "Pengenalan hafalan, buffer, setup dan pertukaran kepingan.",
+      "sources": [
+        "https://jperm.net/bld"
+      ],
+      "steps": [
+        {
+          "title": "1. Skema huruf & buffer",
+          "diagram": "solved",
+          "body": [
+            "Tetapkan satu huruf bagi setiap sticker tepi dan bucu menggunakan skema yang konsisten, contohnya Speffz. Buffer ialah lokasi kepingan yang digunakan berulang untuk pertukaran.",
+            "Untuk Old Pochmann klasik, tepi menggunakan buffer UR dan sasaran UL; bucu menggunakan buffer UBL dan sasaran UFR. Sasaran ialah sticker tertentu, bukan keseluruhan muka. Jangan campur skema daripada tutorial yang menggunakan buffer berlainan."
+          ]
+        },
+        {
+          "title": "2. Jejak kitar & hafal",
+          "diagram": "edges",
+          "body": [
+            "Lihat sticker buffer, cari tempat sepatutnya, dan catat huruf sasaran. Teruskan jejak pada sasaran itu sehingga kembali kepada kepingan buffer. Jika ada kitar berasingan, pilih kepingan belum selesai untuk memecahkan kitar (cycle break).",
+            "Tepi terbalik dan bucu terpusing juga perlu masuk hafalan. Gabungkan huruf berpasangan (letter pairs) sebagai imej atau cerita. Latih dengan catatan dan mata terbuka dahulu."
+          ]
+        },
+        {
+          "title": "3. Tepi: setup → T-perm → undo",
+          "diagram": "edges",
+          "body": [
+            "Bagi setiap huruf, lakukan setup moves untuk membawa sticker sasaran ke UL tanpa mengubah buffer yang digunakan. Laksanakan T-perm, kemudian undurkan setup dalam urutan terbalik.",
+            "T-perm juga menukar sepasang bucu; kesan sampingan ini dijaga melalui bilangan pertukaran dan langkah parity. Setup berbeza bagi setiap sticker; jangan gunakan satu setup untuk semua sasaran."
+          ],
+          "algs": [
+            "pll-t"
+          ]
+        },
+        {
+          "title": "4. Parity & bucu",
+          "diagram": "solved",
+          "body": [
+            "Jika bilangan sasaran tepi dan bucu kedua-duanya ganjil, lakukan formula parity di antara penyelesaian tepi dan bucu mengikut konvensyen Old Pochmann ini.",
+            "Untuk bucu, bawa sticker sasaran ke sasaran UFR, lakukan formula pertukaran bucu, dan undurkan setup. Formula ini berasaskan Y-perm yang diubah suai; ia tidak sama dengan Y-perm biasa."
+          ],
+          "algs": [
+            "bld-parity",
+            "bld-corner"
+          ],
+          "tip": "Ini asas Old Pochmann. Skema huruf dan jadual setup lengkap dalam rujukan mesti dipadankan dengan pegangan anda sebelum cuba tanpa melihat."
+        }
+      ]
+    },
+    {
+      "id": "commutators",
+      "name": "Komutator & setup",
+      "english": "Commutators · Conjugates",
+      "level": "Lanjutan",
+      "summary": "Fahami binaan formula untuk Heise, blindfold dan FMC.",
+      "sources": [
+        "https://www.ryanheise.com/cube/commutators.html"
+      ],
+      "steps": [
+        {
+          "title": "Komutator [A, B]",
+          "diagram": "corners",
+          "body": [
+            "[A, B] bermaksud A B A⁻¹ B⁻¹. Invers (inverse) membalik urutan dan arah setiap pusingan. Jika A = R U R′, maka A⁻¹ = R U′ R′.",
+            "Kesan biasanya tertumpu pada kepingan yang bertindih antara A dan B; bukan semua pilihan A dan B menghasilkan kitar tiga yang berguna."
+          ],
+          "algs": [
+            "commutator"
+          ]
+        },
+        {
+          "title": "Conjugate & setup",
+          "diagram": "edges",
+          "body": [
+            "S A S⁻¹ bermaksud buat persediaan S, laksanakan formula A, kemudian undurkan S. Tujuannya ialah memindahkan kes sebenar ke lokasi yang formula itu boleh kendalikan.",
+            "Contoh menggunakan setup U dan picu kanan. Bandingkan keadaan sebelum dan selepas pada rajah; formula ini latihan struktur, bukannya langkah akhir sejagat."
+          ],
+          "algs": [
+            "conjugate"
+          ]
+        },
+        {
+          "title": "Latihan kurang pusingan",
+          "diagram": "solved",
+          "body": [
+            "Dalam Fewest Moves Challenge (FMC), cari blok yang mudah, orientasi tepi dan kes yang boleh disingkat. Bezakan jumlah pusingan (move count) daripada masa pelaksanaan.",
+            "Insertion memasukkan kitar pendek ke titik sesuai dalam penyelesaian rangka (skeleton). Jangan menganggap formula yang panjang sentiasa lebih lambat; keselesaan finger tricks juga penting."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thistlethwaite",
+      "name": "Algoritma empat fasa",
+      "english": "Thistlethwaite",
+      "level": "Komputer",
+      "summary": "Fahami kaedah yang digunakan penyelesai automatik aplikasi ini.",
+      "sources": [
+        "https://www.jaapsch.net/puzzles/thistle.htm"
+      ],
+      "steps": [
+        {
+          "title": "Fasa 1: orientasi tepi",
+          "diagram": "line",
+          "body": [
+            "Selesaikan Edge Orientation (EO). Selepas ini set pusingan dihadkan supaya orientasi tersebut kekal. Komputer memilih langkah melalui jadual jarak, bukan satu formula tetap."
+          ]
+        },
+        {
+          "title": "Fasa 2: bucu & hirisan",
+          "diagram": "f2l",
+          "body": [
+            "Betulkan orientasi bucu dan kumpulkan empat tepi hirisan tengah di dalam hirisan yang sesuai. Ini pengurangan ruang carian (group reduction), bukan tuntutan bahawa F2L sudah berwarna lengkap.",
+            "Rajah menunjukkan sasaran pembelajaran F2L sahaja; keadaan sebenar algoritma fasa ini masih boleh kelihatan acak."
+          ]
+        },
+        {
+          "title": "Fasa 3 & 4: kumpulan separuh pusingan",
+          "diagram": "solved",
+          "body": [
+            "Susun kepingan ke subkumpulan yang boleh diselesaikan dengan separuh pusingan sahaja, kemudian lengkapkan kiub menggunakan U2, R2, F2, D2, L2 dan B2.",
+            "Butang Selesaikan menggunakan enjin ini. Memilih tutorial manusia tidak menukar enjin automatik kepada CFOP atau Roux."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kociemba",
+      "name": "Algoritma dua fasa",
+      "english": "Kociemba · Two-Phase",
+      "level": "Komputer",
+      "summary": "Perbandingan pendekatan komputer dengan kaedah empat fasa.",
+      "sources": [
+        "https://kociemba.org/cube.htm"
+      ],
+      "steps": [
+        {
+          "title": "Fasa 1: capai subkumpulan G1",
+          "diagram": "line",
+          "body": [
+            "Carian dua fasa mengorientasikan semua tepi dan bucu serta meletakkan empat tepi hirisan tengah dalam hirisan yang betul. Sasaran ini dikenali sebagai subkumpulan G1.",
+            "Carian menggunakan koordinat dan jadual pemangkasan (pruning tables), bukan satu formula untuk semua susunan."
+          ]
+        },
+        {
+          "title": "Fasa 2: lengkapkan kiub",
+          "diagram": "solved",
+          "body": [
+            "Dari G1, komputer mencari penyelesaian menggunakan U, D serta separuh pusingan R2, L2, F2 dan B2. Banyak calon fasa pertama boleh dicuba untuk mendapatkan urutan lebih pendek.",
+            "Tutorial ini menerangkan konsep. Penyelesai semasa aplikasi menggunakan empat fasa, dan tidak menjamin urutan terpendek."
+          ]
+        }
+      ]
+    }
+  ],
+  "extraAlgorithms": [
+    {
+      "id": "trigger",
+      "name": "Picu kanan · Right trigger",
+      "alg": "R U R' U'",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "left-trigger",
+      "name": "Picu kiri · Left trigger",
+      "alg": "L' U' L U",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "corner-twist",
+      "name": "Putar bucu · Corner twist",
+      "alg": "R' D' R D",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "middle-right",
+      "name": "Masuk kanan · Right insert",
+      "alg": "U R U' R' U' F' U F",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "middle-left",
+      "name": "Masuk kiri · Left insert",
+      "alg": "U' L' U L U F U' F'",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "yellow-cross",
+      "name": "Salib kuning · Edge orientation",
+      "alg": "F R U R' U' F'",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "sune",
+      "name": "Sune",
+      "alg": "R U R' U R U2 R'",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "antisune",
+      "name": "Anti-Sune",
+      "alg": "R U2 R' U' R U' R'",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "corner-cycle",
+      "name": "Kitar bucu · Corner cycle",
+      "alg": "U R U' L' U R' U' L",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "beginner-edges",
+      "name": "Kitar tepi · Edge cycle",
+      "alg": "R U R' U R U2 R' U",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "f2l-insert",
+      "name": "Pasangan F2L kanan",
+      "alg": "U R U' R'",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "f2l-mirror",
+      "name": "Pasangan F2L kiri",
+      "alg": "U' L' U L",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "lse-orient",
+      "name": "Orientasi LSE · Adjacent edges",
+      "alg": "M' U' M U2 M' U' M",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "lse-insert",
+      "name": "Masukkan tepi DF/DB",
+      "alg": "M' U2 M",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "sexy-six",
+      "name": "Enam picu kanan",
+      "alg": "(R U R' U')6",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "commutator",
+      "name": "Contoh komutator · [R U R′, D]",
+      "alg": "R U R' D R U' R' D'",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "conjugate",
+      "name": "Contoh conjugate · U [R U R′ U′] U′",
+      "alg": "U R U R' U' U'",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-beginners-method/"
+    },
+    {
+      "id": "bld-corner",
+      "name": "Pertukaran bucu Old Pochmann",
+      "alg": "R U' R' U' R U R' F' R U R' U' R' F R",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://jperm.net/bld"
+    },
+    {
+      "id": "bld-parity",
+      "name": "Pariti Old Pochmann",
+      "alg": "R U' R' U' R U R D R' U' R D' R' U2 R' U'",
+      "group": "Asas",
+      "category": "Latihan",
+      "source": "https://jperm.net/bld"
+    }
+  ]
+}
