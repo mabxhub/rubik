@@ -32,7 +32,7 @@ Enjin empat fasa mengesahkan input dan hasil penyelesaian. Bilangan pusingan tid
 
 Tekan butang bulat **?** pada paparan awal. Menu merangkumi 12 topik dan 53 pelajaran: asas/notasi, Beginner LBL, CFOP 2-look, CFOP penuh, Roux, ZZ, Petrus, Heise, Old Pochmann, komutator/setup, Thistlethwaite dan Kociemba. Koleksi ini meliputi kaedah utama serta konsep lanjutan, bukan setiap variasi komuniti yang pernah dicipta.
 
-Tutorial dalam Bahasa Melayu mengekalkan istilah penting dalam English. Setiap pelajaran mempunyai rajah sasaran. Pustaka mengandungi semua **57 OLL, 21 PLL dan 42 CMLL** dengan formula, rajah kes mula enam muka dan pemain latihan 3D yang boleh diseret. Pemain menyokong pusingan muka, hirisan M/E/S, wide moves dan putaran x/y/z. Kes contoh dijana dengan mengundurkan formula daripada kiub selesai, kemudian formula dimainkan dari kes itu.
+Tutorial dalam Bahasa Melayu mengekalkan istilah penting dalam English. Setiap pelajaran mempunyai rajah sasaran. Butang di penjuru rajah menukar bentuk terbuka kepada kiub yang boleh diputar dengan seretan, dan sebaliknya. Pustaka mengandungi semua **57 OLL, 21 PLL dan 42 CMLL** dengan formula, rajah kes mula enam muka dan pemain latihan 3D yang boleh diseret. Pemain menyokong pusingan muka, hirisan M/E/S, wide moves dan putaran x/y/z. Kes contoh dijana dengan mengundurkan formula daripada kiub selesai, kemudian formula dimainkan dari kes itu.
 
 Kiub latihan berasingan tidak mengubah warna atau langkah penyelesai pengguna. Tutorial dan rajah berfungsi offline selepas pemasangan cache. Pilihan tutorial membuka bahan pembelajaran; ia tidak menukar enjin penyelesai automatik kepada kaedah manusia. Tutorial boleh ditatal di dalam panelnya; paparan utama kekal satu skrin.
 

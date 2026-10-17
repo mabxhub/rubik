@@ -41,7 +41,48 @@
     coords.forEach(([x,y],face)=>{svg+=`<text x="${x+39}" y="${y-4}" text-anchor="middle" fill="#334155" font-size="12" font-family="system-ui" font-weight="700">${C.faces[face]}</text>`;
       for(let i=0;i<9;i++){const index=face*9+i;const color=kind&&!goalVisible(kind,index)?'#cbd5e1':C.colors[state[index]];svg+=`<rect x="${x+(i%3)*26}" y="${y+Math.floor(i/3)*26}" width="24" height="24" rx="3" fill="${color}" stroke="#253344" stroke-width="1.5"/>`;}
     });svg+='</svg>';
-    const figure=create('figure','tutorial-figure');figure.innerHTML=svg;figure.append(create('figcaption','',caption));return figure;
+    const figure=create('figure','tutorial-figure');
+    const picture=create('div','tutorial-diagram-picture');
+    let cube=false,pitch=.48,yaw=-.55,pointer=null,lastX=0,lastY=0;
+    const toggle=button('',()=>{cube=!cube;render();},'tutorial-diagram-toggle');
+    const label=create('figcaption','',caption);
+    function rotate([x,y,z]){const xx=x*Math.cos(yaw)+z*Math.sin(yaw),zz=-x*Math.sin(yaw)+z*Math.cos(yaw);return [xx,y*Math.cos(pitch)-zz*Math.sin(pitch),y*Math.sin(pitch)+zz*Math.cos(pitch)];}
+    function project(point){const p=rotate(point);return [185+p[0]*48,145-p[1]*48];}
+    function points(center,horizontal,vertical,size){return [[-1,-1],[1,-1],[1,1],[-1,1]].map(([u,v])=>project(center.map((value,i)=>value+u*horizontal[i]*size+v*vertical[i]*size))).map(p=>p.map(value=>value.toFixed(2)).join(',')).join(' ');}
+    function cubeSvg(){
+      let result='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 290" role="img" aria-label="'+escape(caption+' · kiub boleh diputar')+'"><title>'+escape(caption)+'</title>';
+      const faces=C.faces.map((name,face)=>{const {normal}=C.geometry(face*9+4);return {face,name,normal,depth:rotate(normal)[2]};}).filter(face=>face.depth>.001).sort((a,b)=>a.depth-b.depth);
+      for(const {face,name,normal} of faces){
+        const first=C.geometry(face*9).pos;
+        const horizontal=C.geometry(face*9+1).pos.map((value,i)=>value-first[i]);
+        const vertical=C.geometry(face*9+3).pos.map((value,i)=>value-first[i]);
+        const faceCenter=normal.map(value=>value*1.504);
+        result+=`<polygon points="${points(faceCenter,horizontal,vertical,1.5)}" fill="#111b26" stroke="#111b26" stroke-width="2" stroke-linejoin="round"/>`;
+        for(let cell=0;cell<9;cell++){
+          const index=face*9+cell,{pos}=C.geometry(index);
+          const center=pos.map((value,i)=>value+normal[i]*.506);
+          const color=kind&&!goalVisible(kind,index)?'#cbd5e1':C.colors[state[index]];
+          result+=`<polygon data-facelet="${index}" points="${points(center,horizontal,vertical,.445)}" fill="${color}" stroke="#111b26" stroke-width="1.6" stroke-linejoin="round"/>`;
+        }
+        const [x,y]=project(faceCenter);
+        result+=`<circle cx="${x}" cy="${y}" r="10" fill="#172b4ddd"/><text x="${x}" y="${y+4}" text-anchor="middle" fill="white" font-size="12" font-family="system-ui" font-weight="800">${name}</text>`;
+      }
+      return result+'</svg>';
+    }
+    function render(){
+      figure.dataset.view=cube?'cube':'net';
+      picture.innerHTML=cube?cubeSvg():svg;
+      toggle.setAttribute('aria-pressed',String(cube));
+      toggle.setAttribute('aria-label',cube?'Tukar kepada bentuk terbuka':'Tukar kepada kiub');
+      toggle.title=cube?'Bentuk terbuka':'Kiub';
+      toggle.innerHTML=cube?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2h7v7H8zM1 9h7v7H1zM8 9h7v7H8zM15 9h7v7h-7zM8 16h7v7H8z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7Zm0 10 9-5M12 12 3 7m9 5v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+      label.textContent=caption+(cube?' · seret untuk putar':'');
+    }
+    picture.addEventListener('pointerdown',event=>{if(!cube||pointer!==null)return;pointer=event.pointerId;lastX=event.clientX;lastY=event.clientY;picture.setPointerCapture(pointer);});
+    picture.addEventListener('pointermove',event=>{if(!cube||event.pointerId!==pointer)return;yaw+=(event.clientX-lastX)*.009;pitch+=(event.clientY-lastY)*.009;lastX=event.clientX;lastY=event.clientY;render();});
+    const end=event=>{if(event.pointerId!==pointer)return;if(picture.hasPointerCapture(pointer))picture.releasePointerCapture(pointer);pointer=null;};
+    picture.addEventListener('pointerup',end);picture.addEventListener('pointercancel',end);picture.addEventListener('lostpointercapture',()=>pointer=null);
+    figure.append(toggle,picture,label);render();return figure;
   }
   async function open(){
     lastFocus=document.activeElement;

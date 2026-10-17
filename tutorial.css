@@ -6,3 +6,5 @@
 @media(max-width:600px){#tutorialDialog{width:calc(var(--viewport-width,100vw) - 12px);height:calc(var(--viewport-height,100dvh) - 12px);border-radius:16px}.tutorial-toolbar{padding:10px}.tutorial-toolbar h2{font-size:16px}#tutorialContent{padding:16px}#tutorialContent h3{font-size:21px}.tutorial-method-list{grid-template-columns:1fr}.tutorial-case-list{grid-template-columns:1fr}.tutorial-nav{padding:10px}.tutorial-nav button{padding:8px;font-size:11px}}
 
 .tutorial-move{font-weight:800;color:inherit}
+
+.tutorial-figure{position:relative;padding-top:42px}.tutorial-dialog .tutorial-diagram-toggle{position:absolute;top:7px;right:7px;display:grid;place-items:center;width:36px;min-width:36px;height:36px;min-height:36px;padding:6px;margin:0;border-radius:9px;background:#fff;z-index:1}.tutorial-dialog .tutorial-diagram-toggle svg{width:20px;height:20px;max-height:none}.tutorial-algorithm .tutorial-figure{padding-top:42px}.tutorial-diagram-picture{min-width:0}.tutorial-figure[data-view="cube"] .tutorial-diagram-picture{touch-action:none;cursor:grab}.tutorial-figure[data-view="cube"] .tutorial-diagram-picture:active{cursor:grabbing}
