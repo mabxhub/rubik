@@ -652,7 +652,7 @@
           "diagram": "solved",
           "body": [
             "Susun kepingan ke subkumpulan yang boleh diselesaikan dengan separuh pusingan sahaja, kemudian lengkapkan kiub menggunakan U2, R2, F2, D2, L2 dan B2.",
-            "Butang Selesaikan menggunakan enjin ini. Memilih tutorial manusia tidak menukar enjin automatik kepada CFOP atau Roux."
+            "Pilihan Automatik dalam dropdown Selesaikan menggunakan enjin ini. Memilih tutorial manusia tidak menukar enjin automatik kepada CFOP atau Roux."
           ]
         }
       ]
@@ -680,7 +680,7 @@
           "diagram": "solved",
           "body": [
             "Dari G1, komputer mencari penyelesaian menggunakan U, D serta separuh pusingan R2, L2, F2 dan B2. Banyak calon fasa pertama boleh dicuba untuk mendapatkan urutan lebih pendek.",
-            "Tutorial ini menerangkan konsep. Penyelesai semasa aplikasi menggunakan empat fasa, dan tidak menjamin urutan terpendek."
+            "Tutorial ini menerangkan konsep. Pilihan Automatik aplikasi menggunakan empat fasa, dan tidak menjamin urutan terpendek."
           ]
         }
       ]

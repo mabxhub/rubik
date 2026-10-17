@@ -59,6 +59,9 @@ document.addEventListener('keydown', event => {
     let selectedColor = 5; // Default Green selected (or first tap)
     let inSolveMode = false;
     let solutionMoves = [];
+    let solutionStages = [];
+    let solutionFormulas = [];
+    let solutionMethod = 'auto';
     let solutionStep = 0;
     let isAnimating = false;
     let autoPlayTimer = null;
@@ -442,25 +445,30 @@ document.addEventListener('keydown', event => {
 
       solving = true;
       setBusy(true);
-      let moves;
+      let plan;
       try {
-        moves = await new Promise((resolve, reject) => {
+        const method = document.getElementById('solveMethod').value;
+        plan = await new Promise((resolve, reject) => {
           const worker = new Worker('solver-worker.js');
-          worker.onmessage = ({data}) => { worker.terminate(); data.error ? reject(new Error(data.error)) : resolve(data.moves); };
+          worker.onmessage = ({data}) => { worker.terminate(); data.error ? reject(new Error(data.error)) : resolve(data); };
           worker.onerror = () => { worker.terminate(); reject(new Error('Enjin tidak dapat dimuatkan. Muat semula halaman dan cuba lagi.')); };
-          worker.postMessage(check.state);
+          worker.postMessage({state:check.state,method});
         });
       } catch (error) { showStatusBanner(error.message); return; }
       finally { solving = false; setBusy(false); }
+      const moves = plan.moves;
       if (!moves || moves.length === 0) {
 
         return;
       }
 
       solutionMoves = moves;
+      solutionStages = plan.stages;
+      solutionFormulas = plan.formulas;
+      solutionMethod = plan.method;
       solutionStep = 0;
       inSolveMode = true;
-      document.getElementById('paintBottomBar').classList.add('hidden');
+      document.getElementById('paintControls').classList.add('hidden');
       document.getElementById('solvePlayerBar').classList.remove('hidden');
       updateSolveBarUI();
     }
@@ -473,13 +481,31 @@ document.addEventListener('keydown', event => {
       solutionMoves = [];
       solutionStep = 0;
       document.getElementById('solvePlayerBar').classList.add('hidden');
-      document.getElementById('paintBottomBar').classList.remove('hidden');
+      document.getElementById('paintControls').classList.remove('hidden');
     }
 
     function updateSolveBarUI() {
       updateMoveArrow();
       const total = solutionMoves.length;
       const cur = solutionStep;
+      const stageIndex = solutionStages.findIndex(stage => cur >= stage.start && cur < stage.end);
+      const stage = solutionStages[stageIndex];
+      document.getElementById('solutionStageTitle').textContent = stage ? stage.name : cur >= total ? '✓ Selesai' : '';
+      document.getElementById('solutionStageCount').textContent = stage ? `${stageIndex + 1} / ${solutionStages.length}` : '';
+      const formula = solutionFormulas.find(formula => cur >= formula.start && cur < formula.end);
+      const formulaBox = document.getElementById('solutionFormula');
+      formulaBox.replaceChildren();
+      if (formula) {
+        formulaBox.title = formula.label;
+        for (let i = formula.start; i < formula.end; i++) {
+          const token = document.createElement('strong');
+          token.textContent = MOVE_NAMES[solutionMoves[i]];
+          token.className = i === cur ? 'formula-current' : i < cur ? 'formula-done' : '';
+          formulaBox.appendChild(token);
+        }
+        const active = formulaBox.querySelector('.formula-current');
+        if (active) formulaBox.scrollLeft += active.getBoundingClientRect().left - formulaBox.getBoundingClientRect().left - formulaBox.clientWidth / 2 + active.clientWidth / 2;
+      }
       const badge = document.getElementById('moveBadge');
       const counter = document.getElementById('stepCounterText');
       const instr = document.getElementById('moveInstructionText');
@@ -576,7 +602,10 @@ document.addEventListener('keydown', event => {
           selectedColor = Number.isInteger(saved.selectedColor) && saved.selectedColor >= 0 && saved.selectedColor < 6 ? saved.selectedColor : 5;
           if (saved.inSolveMode && Array.isArray(saved.solutionMoves) && saved.solutionMoves.every(m => Number.isInteger(m) && m >= 0 && m < 18) && Number.isInteger(saved.solutionStep) && saved.solutionStep >= 0 && saved.solutionStep <= saved.solutionMoves.length) {
             inSolveMode = true; solutionMoves = saved.solutionMoves; solutionStep = saved.solutionStep;
-            document.getElementById('paintBottomBar').classList.add('hidden');
+            solutionStages = Array.isArray(saved.solutionStages) ? saved.solutionStages : [];
+            solutionFormulas = Array.isArray(saved.solutionFormulas) ? saved.solutionFormulas : [];
+            solutionMethod = saved.solutionMethod || 'auto';
+            document.getElementById('paintControls').classList.add('hidden');
             document.getElementById('solvePlayerBar').classList.remove('hidden');
             updateSolveBarUI();
           }
@@ -584,6 +613,9 @@ document.addEventListener('keydown', event => {
         }
       } catch {}
       updateColorCount();
+      const methodSelect = document.getElementById('solveMethod');
+      try { const method = localStorage.getItem('rubik-solve-method'); if ([...methodSelect.options].some(option => option.value === method)) methodSelect.value = method; } catch {}
+      methodSelect.addEventListener('change', () => { try { localStorage.setItem('rubik-solve-method', methodSelect.value); } catch {} });
       document.getElementById('btnView').addEventListener('click', resetCubeOrientation);
       try {
         const speed = Number(localStorage.getItem('rubik-auto-speed'));
@@ -686,7 +718,7 @@ function updateColorCount() {
   });
 }
 function setBusy(busy) {
-  for (const id of ['btnSolve','btnReset','btnScramble']) document.getElementById(id).disabled = busy;
+  for (const id of ['btnSolve','btnReset','btnScramble','solveMethod']) document.getElementById(id).disabled = busy;
   document.querySelectorAll('.color-tile').forEach(button => button.disabled = busy);
   document.getElementById('btnSolve').textContent = busy ? 'Sedang mencari…' : 'Selesaikan';
 }

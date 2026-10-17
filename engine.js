@@ -409,7 +409,7 @@
       return stack.map(x => x.face * 3 + (x.pow - 1));
     }
 
-    function solveCubeState(startState) {
+    function solveCubeState(startState, onPhase = null) {
       initSolverTables();
       let cur = startState;
       const allMoves = [];
@@ -423,6 +423,7 @@
           }
         }
       }
+      if (onPhase) onPhase(0, allMoves);
       {
         const startCO = getCOIndex(cur), startES = getESliceIndex(cur), allowed = PHASE_MOVES[1], path = [];
         function dfs1(co, es, g, lastFace, bound) {
@@ -442,6 +443,7 @@
           if (dfs1(startCO, startES, 0, -1, bound)) break;
         }
         for (const m of path) { cur = multiplyCubie(cur, ALL_MOVES[m]); allMoves.push(m); }
+        if (onPhase) onPhase(1, allMoves);
       }
       {
         const startCP = getPerm8Index(cur.cp), startMS = getMSSliceIndex(cur), allowed = PHASE_MOVES[2], path = [];
@@ -462,6 +464,7 @@
           if (dfs2(startCP, startMS, 0, -1, bound)) break;
         }
         for (const m of path) { cur = multiplyCubie(cur, ALL_MOVES[m]); allMoves.push(m); }
+        if (onPhase) onPhase(2, allMoves);
       }
       {
         const startCP = cp4Map[getPerm8Index(cur.cp)], startEP = getEP4FullIndex(cur), allowed = PHASE_MOVES[3], path = [];
@@ -482,7 +485,8 @@
           if (dfs3(startCP, startEP, 0, -1, bound)) break;
         }
         for (const m of path) { cur = multiplyCubie(cur, ALL_MOVES[m]); allMoves.push(m); }
+        if (onPhase) onPhase(3, allMoves);
       }
-      return simplifyMoves(allMoves);
+      return onPhase ? allMoves : simplifyMoves(allMoves);
     }
 

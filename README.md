@@ -26,7 +26,7 @@ Buka http://localhost:8000. Bina semula selepas mengubah fail untuk menjana `sw.
 node tests/engine.test.cjs
 ```
 
-Enjin empat fasa mengesahkan input dan hasil penyelesaian. Bilangan pusingan tidak semestinya minimum. WebGL dan JavaScript diperlukan. Three.js r128 disimpan secara tempatan, di bawah lesen MIT dalam `vendor/THREE-LICENSE.txt`.
+Pilihan Automatik menggunakan enjin empat fasa. Pilihan Beginner/LBL, CFOP mudah, CFOP penuh dan ZZ menggunakan perancangan khusus teknik, dengan sasaran setiap peringkat disahkan. Bilangan pusingan tidak semestinya minimum. WebGL dan JavaScript diperlukan. Three.js r128 disimpan secara tempatan, di bawah lesen MIT dalam `vendor/THREE-LICENSE.txt`.
 
 ## Tutorial bergambar
 
@@ -34,7 +34,7 @@ Tekan butang bulat **?** pada paparan awal. Menu merangkumi 12 topik dan 53 pela
 
 Tutorial dalam Bahasa Melayu mengekalkan istilah penting dalam English. Setiap pelajaran mempunyai rajah sasaran. Butang di penjuru rajah menukar bentuk terbuka kepada kiub yang boleh diputar dengan seretan, dan sebaliknya. Pustaka mengandungi semua **57 OLL, 21 PLL dan 42 CMLL** dengan formula, rajah kes mula enam muka dan pemain latihan 3D yang boleh diseret. Pemain menyokong pusingan muka, hirisan M/E/S, wide moves dan putaran x/y/z. Kes contoh dijana dengan mengundurkan formula daripada kiub selesai, kemudian formula dimainkan dari kes itu.
 
-Kiub latihan berasingan tidak mengubah warna atau langkah penyelesai pengguna. Tutorial dan rajah berfungsi offline selepas pemasangan cache. Pilihan tutorial membuka bahan pembelajaran; ia tidak menukar enjin penyelesai automatik kepada kaedah manusia. Tutorial boleh ditatal di dalam panelnya; paparan utama kekal satu skrin.
+Kiub latihan berasingan tidak mengubah warna atau langkah penyelesai pengguna. Tutorial dan rajah berfungsi offline selepas pemasangan cache. Pilihan tutorial membuka bahan pembelajaran; untuk menukar teknik penyelesaian, gunakan dropdown teknik pada paparan utama. Tutorial boleh ditatal di dalam panelnya; paparan utama kekal satu skrin.
 
 Semakan tambahan:
 
@@ -58,3 +58,21 @@ Huraian Bahasa Melayu serta rajah dijana untuk aplikasi ini. Formula standard da
 - [J Perm — Old Pochmann](https://jperm.net/bld)
 - [Jaap Scherphuis — Thistlethwaite](https://www.jaapsch.net/puzzles/thistle.htm)
 - [Herbert Kociemba — Two-Phase](https://kociemba.org/cube.htm)
+
+## Pilihan teknik penyelesaian
+
+Dropdown sebelum **Selesaikan** menyediakan Automatik (empat fasa), Beginner/LBL, CFOP mudah (2-look OLL/PLL), CFOP penuh dan ZZ. Pilihan disimpan pada peranti. Selepas input disahkan, Web Worker menganalisis keadaan sebenar dan membina pelan formula berperingkat. Peringkat yang sudah lengkap tidak menghasilkan pusingan tambahan.
+
+- Beginner: Cross → bucu bawah → tepi tengah → salib atas → tepi atas → kedudukan bucu → orientasi bucu.
+- CFOP mudah: Cross → empat pasangan F2L → orientasi tepi → orientasi bucu → permutasi bucu → permutasi tepi.
+- CFOP penuh: Cross → empat pasangan F2L → satu OLL → satu PLL (dengan AUF jika perlu).
+- ZZ: EO → EOLine → blok F2L menggunakan R/U/L → OCLL → PLL.
+- Automatik: empat fasa asal Thistlethwaite, dengan sempadan fasa sebenar.
+
+Formula di paparan ialah pusingan yang benar-benar dimainkan. Formula pustaka yang menggunakan wide/slice/putaran seluruh kiub diterjemah kepada pusingan muka setara dalam rangka U/R/F/D/L/B pengguna. Skema pusat warna tersuai disokong. Pemain sebelumnya/seterusnya/Auto mengekalkan penyelarasan peringkat dan formula, termasuk selepas kemas kini PWA. Teknik lain dalam tutorial tidak ditawarkan sebagai enjin automatik yang belum dilaksanakan.
+
+```sh
+node tests/staged-solver.test.cjs
+```
+
+Ujian merangkumi 200 susunan sah bagi setiap lima teknik (1,000 keseluruhan), sasaran setiap peringkat, liputan formula, kes sudah selesai dan kesetaraan notasi pustaka.
