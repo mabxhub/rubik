@@ -9,7 +9,10 @@
   const back=document.getElementById('tutorialBack');
   const progressKey='rubik-tutorial-progress';
   const escape=text=>String(text).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  function create(tag,className,text){const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;}
+  function boldMoves(text){
+    return escape(text).replace(/(^|[^\p{L}\p{N}_])((?:[URFDLB](?:w)?(?:2[′’]?|[′’])?)+)(?=$|[^\p{L}\p{N}_])/gu,'$1<strong class="tutorial-move">$2</strong>');
+  }
+  function create(tag,className,text){const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.innerHTML=boldMoves(text);return node;}
   function button(label,fn,className=''){const b=create('button',className,label);b.type='button';b.addEventListener('click',fn);return b;}
   const clear=()=>{if(demo){demo.dispose();demo=null;}content.replaceChildren();nav.replaceChildren();content.scrollTop=0;};
   const savedProgress=()=>{try{return JSON.parse(localStorage.getItem(progressKey))||{};}catch{return {};}};
@@ -84,7 +87,7 @@
     const controls=create('div','tutorial-demo-controls');const prev=button('◀',()=>demo?.previous());prev.setAttribute('aria-label','Pusingan sebelumnya');const play=button('▶ Main',()=>demo?.toggle(),'tutorial-primary');const next=button('▶',()=>demo?.next());next.setAttribute('aria-label','Pusingan seterusnya');const reset=button('↺',()=>demo?.reset());reset.setAttribute('aria-label','Mula semula formula');controls.append(prev,play,next,reset);content.append(controls);
     const select=create('select','tutorial-duration');select.setAttribute('aria-label','Tempoh pusingan latihan');for(const ms of [500,1000,1500,2000]){const option=create('option','',`${ms/1000} s / pusingan`);option.value=ms;option.selected=ms===1000;select.append(option);}content.append(select);
     const details=create('details','tutorial-sources');details.append(create('summary','','Kes mula & hasil akhir'));details.append(diagram(C.caseFor(tokens),'Kes mula'),diagram(C.solved(),'Hasil selepas formula lengkap'));const source=create('a','','Rujukan formula');source.href=algorithm.source;source.target='_blank';source.rel='noopener noreferrer';details.append(source);content.append(details);
-    try{demo=new DemoCube(canvas,tokens,()=>Number(select.value),({index,playing,busy})=>{status.textContent=index===tokens.length?'✓ Formula selesai':`${index+1} / ${tokens.length} · ${tokens[index]} · ${C.describe(tokens[index])}`;[...formula.children].forEach((node,i)=>{node.classList.toggle('active',i===index);node.classList.toggle('done',i<index);});prev.disabled=busy||index===0;next.disabled=busy||index===tokens.length;reset.disabled=busy;play.disabled=index===tokens.length;play.textContent=playing?'Ⅱ Jeda':'▶ Main';});}
+    try{demo=new DemoCube(canvas,tokens,()=>Number(select.value),({index,playing,busy})=>{status.innerHTML=boldMoves(index===tokens.length?'✓ Formula selesai':`${index+1} / ${tokens.length} · ${tokens[index]} · ${C.describe(tokens[index])}`);[...formula.children].forEach((node,i)=>{node.classList.toggle('active',i===index);node.classList.toggle('done',i<index);});prev.disabled=busy||index===0;next.disabled=busy||index===tokens.length;reset.disabled=busy;play.disabled=index===tokens.length;play.textContent=playing?'Ⅱ Jeda':'▶ Main';});}
     catch{stage.replaceChildren(create('p','','Paparan 3D tidak tersedia. Gunakan gambar kes mula dan hasil akhir di bawah.'));prev.disabled=next.disabled=play.disabled=reset.disabled=true;}
   }
   class DemoCube{
