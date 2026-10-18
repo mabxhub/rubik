@@ -958,5 +958,374 @@
     "category": "L",
     "alg": "(U) R' U2 R' D' R U2 R' D R2",
     "source": "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/"
+  },
+  {
+    "id": "f2l-1",
+    "name": "F2L 1",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas sepadan",
+    "alg": "U R U' R'",
+    "sourceAlg": "U R U' R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-2",
+    "name": "F2L 2",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas sepadan",
+    "alg": "U' F' U F",
+    "sourceAlg": "y' U' R' U R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-3",
+    "name": "F2L 3",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas sepadan",
+    "alg": "U' R U R' U2 R U' R'",
+    "sourceAlg": "U' R U R' U2 R U' R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-4",
+    "name": "F2L 4",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas sepadan",
+    "alg": "U F' U' F U2 F' U F",
+    "sourceAlg": "d R' U' R U2 R' U R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-5",
+    "name": "F2L 5",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas sepadan",
+    "alg": "U' R U2 R' U2 R U' R'",
+    "sourceAlg": "U' R U2 R' U2 R U' R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-6",
+    "name": "F2L 6",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas sepadan",
+    "alg": "U F' U2 F U2 F' U F",
+    "sourceAlg": "d R' U2 R U2 R' U R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-7",
+    "name": "F2L 7",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas sepadan",
+    "alg": "F' U F U2 R U R'",
+    "sourceAlg": "y' R' U R U' d' R U R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-8",
+    "name": "F2L 8",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas sepadan",
+    "alg": "R U' R' U2 F' U' F",
+    "sourceAlg": "R U' R' U d R' U' R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-9",
+    "name": "F2L 9",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas berbeza",
+    "alg": "F' U' F",
+    "sourceAlg": "y' R' U' R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-10",
+    "name": "F2L 10",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas berbeza",
+    "alg": "R U R'",
+    "sourceAlg": "R U R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-11",
+    "name": "F2L 11",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas berbeza",
+    "alg": "U F' U' F U' F' U' F",
+    "sourceAlg": "d R' U' R U' R' U' R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-12",
+    "name": "F2L 12",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas berbeza",
+    "alg": "U' R U R' U R U R'",
+    "sourceAlg": "U' R U R' U R U R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-13",
+    "name": "F2L 13",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas berbeza",
+    "alg": "U' R U2 R' U F' U' F",
+    "sourceAlg": "U' R U2 R' d R' U' R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-14",
+    "name": "F2L 14",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas berbeza",
+    "alg": "R' U2 R2 U R2 U R",
+    "sourceAlg": "R' U2 R2 U R2 U R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-15",
+    "name": "F2L 15",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas berbeza",
+    "alg": "U F' U F U' F' U' F",
+    "sourceAlg": "d R' U R U' R' U' R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-16",
+    "name": "F2L 16",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D di sisi · warna atas berbeza",
+    "alg": "U' R U' R' U R U R'",
+    "sourceAlg": "U' R U' R' U R U R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-17",
+    "name": "F2L 17",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D menghadap atas",
+    "alg": "R U2 R' U' R U R'",
+    "sourceAlg": "R U2 R' U' R U R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-18",
+    "name": "F2L 18",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D menghadap atas",
+    "alg": "F' U2 F U F' U' F",
+    "sourceAlg": "y' R' U2 R U R' U' R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-19",
+    "name": "F2L 19",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D menghadap atas",
+    "alg": "U R U2 R' U R U' R'",
+    "sourceAlg": "U R U2 R' U R U' R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-20",
+    "name": "F2L 20",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D menghadap atas",
+    "alg": "U' F' U2 F U' F' U F",
+    "sourceAlg": "y' U' R' U2 R U' R' U R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-21",
+    "name": "F2L 21",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D menghadap atas",
+    "alg": "U2 R U R' U R U' R'",
+    "sourceAlg": "U2 R U R' U R U' R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-22",
+    "name": "F2L 22",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D menghadap atas",
+    "alg": "U2 F' U' F U' F' U F",
+    "sourceAlg": "y' U2 R' U' R U' R' U R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-23",
+    "name": "F2L 23",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D menghadap atas",
+    "alg": "U F' U2 F R U2 R' U R U' R'",
+    "sourceAlg": "y' U R' U2 R y R U2 R' U R U' R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-24",
+    "name": "F2L 24",
+    "group": "F2L",
+    "category": "Bucu di atas · warna D menghadap atas",
+    "alg": "U' R U2 R' F' U2 F U' F' U F",
+    "sourceAlg": "U' R U2 R' y' R' U2 R U' R' U R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-25",
+    "name": "F2L 25",
+    "group": "F2L",
+    "category": "Bucu di bawah · tepi di atas",
+    "alg": "U R U' R' U' F' U F",
+    "sourceAlg": "U R U' R' d' L' U L",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-26",
+    "name": "F2L 26",
+    "group": "F2L",
+    "category": "Bucu di bawah · tepi di atas",
+    "alg": "U' F' U F B' R' F R F' B",
+    "sourceAlg": "y' U' R' U R r' U' R U M'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-27",
+    "name": "F2L 27",
+    "group": "F2L",
+    "category": "Bucu di bawah · tepi di atas",
+    "alg": "F' U' F U F' U' F",
+    "sourceAlg": "y' R' U' R U R' U' R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-28",
+    "name": "F2L 28",
+    "group": "F2L",
+    "category": "Bucu di bawah · tepi di atas",
+    "alg": "R U R' U' R U R'",
+    "sourceAlg": "R U R' U' R U R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-29",
+    "name": "F2L 29",
+    "group": "F2L",
+    "category": "Bucu di bawah · tepi di atas",
+    "alg": "R U' R' U R U' R'",
+    "sourceAlg": "R U' R' U R U' R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-30",
+    "name": "F2L 30",
+    "group": "F2L",
+    "category": "Bucu di bawah · tepi di atas",
+    "alg": "F' U F U' F' U F",
+    "sourceAlg": "y' R' U R U' R' U R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-31",
+    "name": "F2L 31",
+    "group": "F2L",
+    "category": "Bucu di atas · tepi di tengah",
+    "alg": "U' R U' R' U2 R U' R'",
+    "sourceAlg": "U' R U' R' U2 R U' R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-32",
+    "name": "F2L 32",
+    "group": "F2L",
+    "category": "Bucu di atas · tepi di tengah",
+    "alg": "U F' U F U2 F' U F",
+    "sourceAlg": "d R' U R U2 R' U R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-33",
+    "name": "F2L 33",
+    "group": "F2L",
+    "category": "Bucu di atas · tepi di tengah",
+    "alg": "U' R U R' U F' U' F",
+    "sourceAlg": "U' R U R' d R' U' R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-34",
+    "name": "F2L 34",
+    "group": "F2L",
+    "category": "Bucu di atas · tepi di tengah",
+    "alg": "U F' U' F U' R U R'",
+    "sourceAlg": "d R' U' R d' R U R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-35",
+    "name": "F2L 35",
+    "group": "F2L",
+    "category": "Bucu di atas · tepi di tengah",
+    "alg": "R U' R' U F' U F",
+    "sourceAlg": "R U' R' d R' U R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-36",
+    "name": "F2L 36",
+    "group": "F2L",
+    "category": "Bucu di atas · tepi di tengah",
+    "alg": "R U R' U' R U R' U' R U R'",
+    "sourceAlg": "R U R' U' R U R' U' R U R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-37",
+    "name": "F2L 37",
+    "group": "F2L",
+    "category": "Bucu di bawah · tepi di tengah",
+    "alg": "R U' R' U' R U R' U2 R U' R'",
+    "sourceAlg": "R U' R' U' R U R' U2 R U' R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-38",
+    "name": "F2L 38",
+    "group": "F2L",
+    "category": "Bucu di bawah · tepi di tengah",
+    "alg": "R U R' U2 R U' R' U R U R'",
+    "sourceAlg": "R U R' U2 R U' R' U R U R'",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-39",
+    "name": "F2L 39",
+    "group": "F2L",
+    "category": "Bucu di bawah · tepi di tengah",
+    "alg": "R U' R' U F' U' F U' F' U' F",
+    "sourceAlg": "R U' R' d R' U' R U' R' U' R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-40",
+    "name": "F2L 40",
+    "group": "F2L",
+    "category": "Bucu di bawah · tepi di tengah",
+    "alg": "R U R' U' R U' R' U2 F' U' F",
+    "sourceAlg": "R U R' U' R U' R' U2 y' R' U' R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
+  },
+  {
+    "id": "f2l-41",
+    "name": "F2L 41",
+    "group": "F2L",
+    "category": "Bucu di bawah · tepi di tengah",
+    "alg": "R U' R' U F' U2 F U2 F' U F",
+    "sourceAlg": "R U' R' U y' R' U2 R U2 R' U R",
+    "source": "https://www.rubiksplace.com/speedcubing/F2L-algorithms/"
   }
 ]

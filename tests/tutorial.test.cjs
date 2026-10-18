@@ -37,3 +37,22 @@ test('last-layer libraries preserve the required solved pieces',()=>{
 test('every lesson has an illustration, readable text, valid formula references and sources',()=>{
  const ids=new Set(algorithms.map(a=>a.id));for(const m of content.methods){assert.ok(m.sources.length);assert.ok(m.steps.length>1);for(const l of m.steps){assert.ok(l.diagram);assert.ok(l.body.length);for(const id of l.algs||[])assert.ok(ids.has(id),id);}}
 });
+
+test('41 F2L cases cover all 149 unsolved pair configurations up to AUF and preserve the cross and other slots',()=>{
+ const entries=algorithms.filter(a=>a.group==='F2L');assert.equal(entries.length,41);
+ const key=state=>{engine.faceletInput=state;return Array.from(vm.runInContext(`(()=>{const s=faceletsToCubie(faceletInput).state,c=s.cp.indexOf(4),e=s.ep.indexOf(8);return [c,s.co[c],e,s.eo[e]]})()`,engine)).join('/');};
+ const covered=new Set();const representatives=new Set();
+ for(const a of entries){const state=C.caseFor(a.alg);const orbit=['','U','U2',"U'"].map(u=>key(C.apply(state,u))).sort();assert.ok(!representatives.has(orbit[0]),'duplicate F2L case '+a.name);representatives.add(orbit[0]);orbit.forEach(k=>covered.add(k));
+ for(let i=0;i<54;i++){const {pos}=C.geometry(i);const cross=pos[1]===-1&&pos.filter(Boolean).length===2;const otherPairs=pos[1]<=0&&!(pos[0]===1&&pos[2]===1);if(cross||otherPairs)assert.equal(state[i],Math.floor(i/9),`${a.name} changes preserved sticker ${i}`);}
+ }
+ assert.equal(covered.size,149);assert.ok(!covered.has('4/0/8/0'));covered.add('4/0/8/0');
+ for(const c of [0,1,2,3,4])for(let co=0;co<3;co++)for(const e of [0,1,2,3,8])for(let eo=0;eo<2;eo++)assert.ok(covered.has([c,co,e,eo].join('/')),'missing configuration');
+});
+test('case notes and AUF variants agree with the diagrams and the playback for every formula',()=>{
+ const N=require('../tutorial-notes');for(const a of algorithms)for(let turn=0;turn<4;turn++){
+ const p=N.profile(a,turn);assert.deepEqual(p.state,C.apply(C.caseFor(a.alg),['','U','U2',"U'"][turn]));assert.deepEqual(C.apply(p.state,p.algorithm.alg),C.solved());assert.ok(p.sections.length>=3);for(const [heading,text] of p.sections){assert.ok(heading&&text);assert.ok(!/undefined|NaN/.test(text),a.name);}
+ if(a.group==='F2L')assert.ok(p.sections.find(([h])=>h==='Kenali kes')[1].includes('Bucu sasaran berada di'));
+ }
+ for(const m of content.methods)for(const lesson of m.steps)for(const situation of lesson.situations||[]){assert.ok(situation.when);assert.ok(situation.action.length>40);}
+ assert.ok(content.methods.find(m=>m.id==='beginner').steps.every(s=>s.situations.length>=4));
+});

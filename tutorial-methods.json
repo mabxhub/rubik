@@ -73,7 +73,25 @@
             "Pegang pusat putih di D dan kuning di U. Cari empat tepi putih dan bina salib (white cross) pada D. Setiap warna sisi tepi mesti sama dengan pusat F, R, B atau L.",
             "Cara bunga daisi (daisy): kumpulkan tepi putih mengelilingi pusat kuning di U. Putar U sehingga warna sisi tepi sama dengan pusat di bawahnya, kemudian pusing muka itu 180°. Ulang untuk empat tepi."
           ],
-          "tip": "Empat putih pada D sahaja belum mencukupi. Semak juga empat padanan pusat sisi."
+          "tip": "Empat putih pada D sahaja belum mencukupi. Semak juga empat padanan pusat sisi.",
+          "situations": [
+            {
+              "when": "Tepi putih di U",
+              "action": "Bina daisy: jika putih menghadap U, putar U untuk sejajarkan warna sisi dengan pusatnya. Pusing muka sisi itu 180° untuk memindahkannya ke D."
+            },
+            {
+              "when": "Tepi putih di tengah",
+              "action": "Putar muka sisi untuk menaikkan putih ke U. Jika tempat di daisy sudah berisi putih, kosongkan tempat itu dengan U dahulu; semak semula salib yang sudah siap."
+            },
+            {
+              "when": "Tepi putih di D tetapi salah atau terbalik",
+              "action": "Naikkan tepi itu semula, padankan dengan pusat sisi, kemudian masukkan semula. Empat putih di D tanpa padanan sisi belum menjadi salib betul."
+            },
+            {
+              "when": "Salib sudah betul",
+              "action": "Langkau langkah ini. Empat tepi D dan empat warna sisi mesti sepadan dengan pusat masing-masing."
+            }
+          ]
         },
         {
           "title": "2. Lengkapkan bucu putih",
@@ -85,7 +103,25 @@
           "algs": [
             "trigger"
           ],
-          "tip": "Picu yang sama mungkin perlu diulang mengikut arah putih pada bucu. Berhenti dan periksa selepas setiap kumpulan empat pusingan."
+          "tip": "Picu yang sama mungkin perlu diulang mengikut arah putih pada bucu. Berhenti dan periksa selepas setiap kumpulan empat pusingan.",
+          "situations": [
+            {
+              "when": "Bucu di U · putih di sisi",
+              "action": "Putar U sehingga bucu tepat di atas slot antara dua pusat yang sepadan, kemudian pegang slot itu di depan kanan. Ulang R U R′ U′ dan periksa selepas setiap kumpulan lengkap."
+            },
+            {
+              "when": "Bucu di U · putih menghadap atas",
+              "action": "Guna pegangan sasaran yang sama. Picu kanan memerlukan lebih banyak ulangan; jangan berhenti selepas R sahaja. Periksa bucu dan salib selepas satu kumpulan penuh."
+            },
+            {
+              "when": "Bucu di bawah · slot atau arah salah",
+              "action": "Letakkan slot yang salah di DFR. Picu R U R′ U′ mengeluarkannya ke U; tentukan slot sebenar, sejajarkan U, kemudian masukkan."
+            },
+            {
+              "when": "Bucu sudah selesai",
+              "action": "Biarkan bucu itu. Pilih bucu putih lain; putar seluruh kiub dengan y untuk membawa slot baharu ke depan kanan."
+            }
+          ]
         },
         {
           "title": "3. Lapisan kedua",
@@ -97,6 +133,24 @@
           "algs": [
             "middle-right",
             "middle-left"
+          ],
+          "situations": [
+            {
+              "when": "Tepi U perlu ke kanan",
+              "action": "Sejajarkan warna sisi tepi di UF dengan pusat F. Jika petak atas berwarna pusat R, guna formula Masuk kanan."
+            },
+            {
+              "when": "Tepi U perlu ke kiri",
+              "action": "Selepas padanan pusat F, jika petak atas berwarna pusat L, guna formula Masuk kiri. Arah ini bergantung pada warna, bukan kedudukan tepi yang paling dekat."
+            },
+            {
+              "when": "Tepi berada di slot yang salah atau terbalik",
+              "action": "Pegang slot salah di FR. Buat Masuk kanan dengan tepi U sebagai pengganti untuk mengeluarkan tepi salah. Cari semula tepi itu di U, padankan pusat dan sisipkan."
+            },
+            {
+              "when": "Semua tepi U mempunyai kuning",
+              "action": "Jika lapisan kedua belum siap, tepi yang diperlukan masih tersangkut di slot tengah. Keluarkan salah satunya dahulu. Jika semua empat slot tengah betul, teruskan."
+            }
           ]
         },
         {
@@ -108,6 +162,24 @@
           ],
           "algs": [
             "yellow-cross"
+          ],
+          "situations": [
+            {
+              "when": "Titik (dot) · 0 tepi kuning di U",
+              "action": "Abaikan bucu. Buat F R U R′ U′ F′ sekali, kemudian kenal pasti corak baharu dan laras U sebelum formula seterusnya."
+            },
+            {
+              "when": "Bentuk L · 2 tepi bersebelahan",
+              "action": "Pegang tepi kuning di UB dan UL. Buat formula salib sekali, kenal pasti semula; jika menjadi garis, sejajarkan mendatar sebelum mengulang."
+            },
+            {
+              "when": "Garis (line) · 2 tepi bertentangan",
+              "action": "Pegang dua tepi kuning di UL dan UR, melintang kiri ke kanan. Buat formula salib sekali."
+            },
+            {
+              "when": "Salib · 4 tepi / jumlah ganjil",
+              "action": "Empat tepi: langkau formula. Jika hanya satu atau tiga tepi kuning menghadap U selepas F2L siap, semak input warna: keadaan itu tidak sah pada kiub 3×3 biasa."
+            }
           ]
         },
         {
@@ -119,6 +191,24 @@
           ],
           "algs": [
             "beginner-edges"
+          ],
+          "situations": [
+            {
+              "when": "Empat sisi sepadan selepas U",
+              "action": "Langkau kitar tepi. Jangan pilih formula hanya kerana bucu belum siap."
+            },
+            {
+              "when": "Dua padanan bersebelahan",
+              "action": "Putar seluruh kiub dengan y untuk meletakkan tepi yang sepadan di B dan R. Lakukan kitar tepi, kemudian semak AUF."
+            },
+            {
+              "when": "Dua padanan bertentangan",
+              "action": "Lakukan kitar tepi sekali, cuba U, U′ atau U2 untuk mencari kes bersebelahan, kemudian gunakan pegangan B dan R."
+            },
+            {
+              "when": "Tiada padanan dalam pegangan semasa",
+              "action": "Cuba keempat-empat kedudukan U dahulu. Kira padanan warna tepi dengan pusat, bukan warna bucu."
+            }
           ]
         },
         {
@@ -130,6 +220,24 @@
           ],
           "algs": [
             "corner-cycle"
+          ],
+          "situations": [
+            {
+              "when": "Satu bucu berada di slot betul",
+              "action": "Pegang bucu itu di UFR, walaupun warna kuning menghadap sisi. Buat kitar bucu; periksa selepas setiap formula lengkap."
+            },
+            {
+              "when": "Tiada bucu di slot betul",
+              "action": "Buat kitar bucu sekali, kemudian cari satu bucu betul dan pegang di UFR."
+            },
+            {
+              "when": "Empat bucu di slot betul",
+              "action": "Langkau kitar bucu dan teruskan orientasi. Slot betul bermaksud set tiga warna sama dengan tiga pusat sekeliling."
+            },
+            {
+              "when": "Hanya dua bucu bertukar selepas semua tepi siap",
+              "action": "Semak input atau keadaan fizikal kiub. Pertukaran tunggal dua bucu sahaja tidak boleh terhasil daripada putaran sah."
+            }
           ]
         },
         {
@@ -142,7 +250,25 @@
           "algs": [
             "corner-twist"
           ],
-          "tip": "Lapisan bawah kelihatan rosak sementara pada langkah ini. Jangan tukar pegangan atau cuba membaikinya di tengah jalan; habiskan semua bucu dalam orientasi yang sama."
+          "tip": "Lapisan bawah kelihatan rosak sementara pada langkah ini. Jangan tukar pegangan atau cuba membaikinya di tengah jalan; habiskan semua bucu dalam orientasi yang sama.",
+          "situations": [
+            {
+              "when": "Bucu UFR belum menghadap atas",
+              "action": "Ulang R′ D′ R D sebanyak dua atau empat kumpulan sehingga kuning menghadap U. Lengkapkan D terakhir setiap kali."
+            },
+            {
+              "when": "Bucu UFR sudah menghadap atas",
+              "action": "Putar U sahaja untuk membawa bucu belum siap seterusnya ke UFR. Kekalkan F yang sama sepanjang langkah ini."
+            },
+            {
+              "when": "Lapisan bawah nampak rosak sementara",
+              "action": "Teruskan dengan pegangan tetap. Jangan betulkan D atau putar seluruh kiub di tengah urutan. Lapisan bawah pulih apabila semua bucu diorientasikan dengan betul."
+            },
+            {
+              "when": "Semua kuning menghadap atas",
+              "action": "Laraskan U sehingga warna sisi sepadan. Jika hanya satu bucu terpiuh, semak input atau bucu yang pernah dipusing secara fizikal; itu keadaan tidak sah."
+            }
+          ]
         }
       ]
     },
@@ -161,6 +287,24 @@
           "diagram": "cross",
           "body": [
             "Bina salib pada D sambil merancang kedudukan tepi seterusnya. Cuba elakkan memusing seluruh kiub berulang kali. Pusat sisi mesti sepadan sebelum beralih ke F2L."
+          ],
+          "situations": [
+            {
+              "when": "Tepi putih di U",
+              "action": "Bina daisy: jika putih menghadap U, putar U untuk sejajarkan warna sisi dengan pusatnya. Pusing muka sisi itu 180° untuk memindahkannya ke D."
+            },
+            {
+              "when": "Tepi putih di tengah",
+              "action": "Putar muka sisi untuk menaikkan putih ke U. Jika tempat di daisy sudah berisi putih, kosongkan tempat itu dengan U dahulu; semak semula salib yang sudah siap."
+            },
+            {
+              "when": "Tepi putih di D tetapi salah atau terbalik",
+              "action": "Naikkan tepi itu semula, padankan dengan pusat sisi, kemudian masukkan semula. Empat putih di D tanpa padanan sisi belum menjadi salib betul."
+            },
+            {
+              "when": "Salib sudah betul",
+              "action": "Langkau langkah ini. Empat tepi D dan empat warna sisi mesti sepadan dengan pusat masing-masing."
+            }
           ]
         },
         {
@@ -168,11 +312,39 @@
           "diagram": "f2l",
           "body": [
             "First Two Layers (F2L) menyelesaikan satu bucu dan satu tepi sebagai pasangan (pair). Cari pasangan yang berkongsi dua warna sisi dan satu warna D.",
-            "Bawa kedua-duanya ke U, jauhkan bucu daripada ruang sasaran untuk memasangkan, kemudian masukkan pasangan tanpa merosakkan cross. Dua formula di bawah ialah contoh kes, bukannya formula universal untuk semua F2L."
+            "Bawa kedua-duanya ke U, jauhkan bucu daripada ruang sasaran untuk memasangkan, kemudian masukkan pasangan tanpa merosakkan cross. Dua formula di bawah ialah contoh kes, bukannya formula universal untuk semua F2L.",
+            "Pustaka F2L mempunyai 41 kes asas tidak selesai, dengan salib D siap dan slot sasaran FR. Nombor F2L dalam aplikasi mengikuti rujukan Rubik’s Place; nombor boleh berbeza daripada laman lain. Formula diseragamkan kepada pusingan muka tanpa pertukaran pegangan."
           ],
           "algs": [
             "f2l-insert",
             "f2l-mirror"
+          ],
+          "library": "F2L",
+          "situations": [
+            {
+              "when": "Bucu dan tepi di U",
+              "action": "Kenali arah petak D pada bucu: menghadap atas atau sisi. Kemudian bandingkan dua warna pada tepi dan bucu. Pilih gambar yang sepadan dalam pustaka 41 kes; warna D di atas memerlukan persediaan yang berbeza daripada warna D di sisi."
+            },
+            {
+              "when": "Bucu di D · tepi di U",
+              "action": "Periksa sama ada bucu betul orientasinya atau terpiuh. Terdapat enam kes asas untuk kumpulan ini; jangan terus gunakan sisipan mudah jika arah bucu berlainan."
+            },
+            {
+              "when": "Bucu di U · tepi di slot sasaran",
+              "action": "Periksa arah tepi. Ada enam kes asas; formula mengeluarkan atau menyediakan tepi sebelum memasangkannya."
+            },
+            {
+              "when": "Kedua-duanya di slot sasaran tetapi belum selesai",
+              "action": "Terdapat lima kes tidak selesai: bucu terpiuh, tepi terbalik atau gabungannya. Pilih rajah tepat. Jika pasangan sudah betul, langkau."
+            },
+            {
+              "when": "Salah satu kepingan di slot lain",
+              "action": "Keluarkan kepingan daripada slot yang salah ke U menggunakan sisipan pada slot itu, kemudian kenal pasti semula. Jangan merosakkan pasangan yang sudah selesai semata-mata untuk meniru rajah."
+            },
+            {
+              "when": "Pasangan sasaran di kiri atau belakang",
+              "action": "Putar seluruh kiub dengan y, y′ atau y2 supaya slot itu menjadi FR. Tentukan semula F/R berdasarkan pusat; kemudian padankan corak U."
+            }
           ]
         },
         {
@@ -183,6 +355,24 @@
           ],
           "algs": [
             "yellow-cross"
+          ],
+          "situations": [
+            {
+              "when": "Titik (dot) · 0 tepi kuning di U",
+              "action": "Abaikan bucu. Buat F R U R′ U′ F′ sekali, kemudian kenal pasti corak baharu dan laras U sebelum formula seterusnya."
+            },
+            {
+              "when": "Bentuk L · 2 tepi bersebelahan",
+              "action": "Pegang tepi kuning di UB dan UL. Buat formula salib sekali, kenal pasti semula; jika menjadi garis, sejajarkan mendatar sebelum mengulang."
+            },
+            {
+              "when": "Garis (line) · 2 tepi bertentangan",
+              "action": "Pegang dua tepi kuning di UL dan UR, melintang kiri ke kanan. Buat formula salib sekali."
+            },
+            {
+              "when": "Salib · 4 tepi / jumlah ganjil",
+              "action": "Empat tepi: langkau formula. Jika hanya satu atau tiga tepi kuning menghadap U selepas F2L siap, semak input warna: keadaan itu tidak sah pada kiub 3×3 biasa."
+            }
           ]
         },
         {
@@ -199,6 +389,20 @@
             "oll-25",
             "oll-26",
             "oll-27"
+          ],
+          "situations": [
+            {
+              "when": "Kes sudah selesai",
+              "action": "Jika semua sembilan petak U sudah menghadap atas, langkau OLL. Jika hanya tepi siap, pilih satu daripada tujuh kes OCLL (OLL 21–27)."
+            },
+            {
+              "when": "Corak dipusing di U",
+              "action": "Cuba U, U′ atau U2 sehingga corak atas DAN petak U di sisi sepadan dengan rajah. Pemilih corak pada kad menunjukkan empat orientasi beserta persediaan yang tepat."
+            },
+            {
+              "when": "Corak atas sama tetapi sisi berbeza",
+              "action": "Semak arah petak U pada setiap bucu. Kes Sune dan Anti-Sune serta bentuk bercermin tidak boleh dipilih berdasarkan satu petak atas sahaja."
+            }
           ]
         },
         {
@@ -211,6 +415,20 @@
           "algs": [
             "pll-t",
             "pll-y"
+          ],
+          "situations": [
+            {
+              "when": "Ada headlights",
+              "action": "Pegang pasangan bucu sama warna di kiri. T-perm boleh membetulkan permutasi bucu; kedudukan tepi pada peringkat ini tidak perlu sama dengan gambar PLL penuh. Semak bucu selepas AUF."
+            },
+            {
+              "when": "Tiada headlights",
+              "action": "Gunakan Y-perm untuk kes pertukaran bucu diagonal. Selepas bucu selesai, kenal pasti tepi secara berasingan."
+            },
+            {
+              "when": "Semua bucu betul selepas AUF",
+              "action": "Langkau permutasi bucu dan teruskan permutasi tepi."
+            }
           ]
         },
         {
@@ -225,6 +443,16 @@
             "pll-ub",
             "pll-h",
             "pll-z"
+          ],
+          "situations": [
+            {
+              "when": "Hanya seluruh lapisan U tersasar",
+              "action": "Buat U, U′ atau U2 sahaja (AUF). Jika semua empat bar sisi sepadan selepas itu, PLL telah selesai."
+            },
+            {
+              "when": "Bucu betul · tepi sahaja berpindah",
+              "action": "Pilih Ua atau Ub untuk kitar tiga tepi, H untuk pertukaran dua pasang bertentangan, Z untuk dua pasang bersebelahan. Padankan arah dalam rajah, bukan nama sahaja."
+            }
           ]
         }
       ]
@@ -246,6 +474,24 @@
           "diagram": "cross",
           "body": [
             "Semasa pemeriksaan (inspection), rancang empat tepi cross pada D. Latih penyelesaian tanpa melihat cross selepas pusingan pertama. Fikirkan pusat warna dan tepi pertama F2L serentak."
+          ],
+          "situations": [
+            {
+              "when": "Tepi putih di U",
+              "action": "Bina daisy: jika putih menghadap U, putar U untuk sejajarkan warna sisi dengan pusatnya. Pusing muka sisi itu 180° untuk memindahkannya ke D."
+            },
+            {
+              "when": "Tepi putih di tengah",
+              "action": "Putar muka sisi untuk menaikkan putih ke U. Jika tempat di daisy sudah berisi putih, kosongkan tempat itu dengan U dahulu; semak semula salib yang sudah siap."
+            },
+            {
+              "when": "Tepi putih di D tetapi salah atau terbalik",
+              "action": "Naikkan tepi itu semula, padankan dengan pusat sisi, kemudian masukkan semula. Empat putih di D tanpa padanan sisi belum menjadi salib betul."
+            },
+            {
+              "when": "Salib sudah betul",
+              "action": "Langkau langkah ini. Empat tepi D dan empat warna sisi mesti sepadan dengan pusat masing-masing."
+            }
           ]
         },
         {
@@ -253,12 +499,40 @@
           "diagram": "f2l",
           "body": [
             "Bina empat pasangan bucu–tepi. Pisahkan pasangan yang tidak sepadan, satukan di U dan masukkan ke ruang yang betul. Gunakan ruang belum selesai untuk bekerja.",
-            "Lookahead bermaksud mencari pasangan seterusnya semasa tangan menyiapkan pasangan semasa. Dahulukan pergerakan lancar; kurangkan berhenti sebelum cuba lebih laju."
+            "Lookahead bermaksud mencari pasangan seterusnya semasa tangan menyiapkan pasangan semasa. Dahulukan pergerakan lancar; kurangkan berhenti sebelum cuba lebih laju.",
+            "Pustaka F2L mempunyai 41 kes asas tidak selesai, dengan salib D siap dan slot sasaran FR. Nombor F2L dalam aplikasi mengikuti rujukan Rubik’s Place; nombor boleh berbeza daripada laman lain. Formula diseragamkan kepada pusingan muka tanpa pertukaran pegangan."
           ],
           "algs": [
             "f2l-insert",
             "f2l-mirror",
             "trigger"
+          ],
+          "library": "F2L",
+          "situations": [
+            {
+              "when": "Bucu dan tepi di U",
+              "action": "Kenali arah petak D pada bucu: menghadap atas atau sisi. Kemudian bandingkan dua warna pada tepi dan bucu. Pilih gambar yang sepadan dalam pustaka 41 kes; warna D di atas memerlukan persediaan yang berbeza daripada warna D di sisi."
+            },
+            {
+              "when": "Bucu di D · tepi di U",
+              "action": "Periksa sama ada bucu betul orientasinya atau terpiuh. Terdapat enam kes asas untuk kumpulan ini; jangan terus gunakan sisipan mudah jika arah bucu berlainan."
+            },
+            {
+              "when": "Bucu di U · tepi di slot sasaran",
+              "action": "Periksa arah tepi. Ada enam kes asas; formula mengeluarkan atau menyediakan tepi sebelum memasangkannya."
+            },
+            {
+              "when": "Kedua-duanya di slot sasaran tetapi belum selesai",
+              "action": "Terdapat lima kes tidak selesai: bucu terpiuh, tepi terbalik atau gabungannya. Pilih rajah tepat. Jika pasangan sudah betul, langkau."
+            },
+            {
+              "when": "Salah satu kepingan di slot lain",
+              "action": "Keluarkan kepingan daripada slot yang salah ke U menggunakan sisipan pada slot itu, kemudian kenal pasti semula. Jangan merosakkan pasangan yang sudah selesai semata-mata untuk meniru rajah."
+            },
+            {
+              "when": "Pasangan sasaran di kiri atau belakang",
+              "action": "Putar seluruh kiub dengan y, y′ atau y2 supaya slot itu menjadi FR. Tentukan semula F/R berdasarkan pusat; kemudian padankan corak U."
+            }
           ]
         },
         {
@@ -268,7 +542,21 @@
             "Dengan F2L siap, kenali corak kuning pada U serta petak kuning di sisi lapisan atas. OLL penuh mengarahkan seluruh muka U dengan satu formula.",
             "Pilih satu kes untuk melihat semua enam muka dan pusingannya. Warna sisi dalam kes OLL boleh berbeza; yang penting ialah orientasi U dan dua lapisan bawah yang sudah siap."
           ],
-          "library": "OLL"
+          "library": "OLL",
+          "situations": [
+            {
+              "when": "Kes sudah selesai",
+              "action": "Jika semua sembilan petak U sudah menghadap atas, langkau OLL. Jika hanya tepi siap, pilih satu daripada tujuh kes OCLL (OLL 21–27)."
+            },
+            {
+              "when": "Corak dipusing di U",
+              "action": "Cuba U, U′ atau U2 sehingga corak atas DAN petak U di sisi sepadan dengan rajah. Pemilih corak pada kad menunjukkan empat orientasi beserta persediaan yang tepat."
+            },
+            {
+              "when": "Corak atas sama tetapi sisi berbeza",
+              "action": "Semak arah petak U pada setiap bucu. Kes Sune dan Anti-Sune serta bentuk bercermin tidak boleh dipilih berdasarkan satu petak atas sahaja."
+            }
+          ]
         },
         {
           "title": "21 kes PLL",
@@ -277,7 +565,25 @@
             "Selepas U siap, kenali blok warna dan headlights pada sisi lapisan atas. PLL penuh menyelesaikan kedudukan dengan satu formula, diikuti AUF jika perlu.",
             "Jika formula menggunakan x atau y, pusing seluruh kiub seperti ditunjukkan pemain. Huruf muka selepas putaran merujuk muka pada kedudukan baharu."
           ],
-          "library": "PLL"
+          "library": "PLL",
+          "situations": [
+            {
+              "when": "Hanya seluruh lapisan U tersasar",
+              "action": "Buat U, U′ atau U2 sahaja (AUF). Jika semua empat bar sisi sepadan selepas itu, PLL telah selesai."
+            },
+            {
+              "when": "Bucu betul · tepi sahaja berpindah",
+              "action": "Pilih Ua atau Ub untuk kitar tiga tepi, H untuk pertukaran dua pasang bertentangan, Z untuk dua pasang bersebelahan. Padankan arah dalam rajah, bukan nama sahaja."
+            },
+            {
+              "when": "Bucu dan tepi berpindah",
+              "action": "Semak headlights dan blok warna pada semua sisi. Cari gambar tepat dalam 21 PLL; AUF sebelum dan selepas formula mungkin diperlukan."
+            },
+            {
+              "when": "Pertukaran dua kepingan sahaja",
+              "action": "Kiub 3×3 sah tidak mempunyai satu pertukaran dua bucu sahaja atau dua tepi sahaja. Semak semua enam muka sebelum menganggapnya kes PLL."
+            }
+          ]
         }
       ]
     },
@@ -327,7 +633,21 @@
           "body": [
             "Untuk satu peringkat, kenali kumpulan O, H, Pi, U, T, S, As dan L. Padankan warna bucu dan gunakan satu formula. Tepi tengah dalam rajah hanyalah contoh dan tidak penting bagi pengecaman CMLL."
           ],
-          "library": "CMLL"
+          "library": "CMLL",
+          "situations": [
+            {
+              "when": "Bucu sudah berorientasi",
+              "action": "Cari kes kumpulan O untuk permutasi bucu, atau langkau CMLL jika keempat-empat bucu sudah selesai selepas AUF."
+            },
+            {
+              "when": "Orientasi bucu berbeza",
+              "action": "Cari kumpulan H, Pi, U, T, S, As atau L. Bandingkan warna sisi bucu, kemudian padankan AUF. Abaikan semua tepi LSE."
+            },
+            {
+              "when": "Blok kiri/kanan belum siap",
+              "action": "Kembali kepada pembinaan blok. CMLL memerlukan kedua-dua blok siap; ia bukan formula pembaikan blok."
+            }
+          ]
         },
         {
           "title": "5. LSE: orientasi & tepi sisi",
@@ -372,6 +692,24 @@
           "body": [
             "Tetapkan U/D dan F/B dahulu. Pada muka U/D, tepi yang memaparkan warna pusat L/R adalah buruk (bad edge). Jika warna yang kelihatan ialah F/B dan warna pasangannya U/D, tepi itu juga buruk. Jika U/D kelihatan, tepi itu baik.",
             "Untuk empat tepi di hirisan tengah, periksa petak pada F/B dengan peraturan sama. Jumlah bad edges mestilah genap. Ini tentang orientasi kepingan, bukan sama ada warna sudah di tempatnya."
+          ],
+          "situations": [
+            {
+              "when": "0 bad edges",
+              "action": "EO sudah siap. Bina EOLine tanpa suku pusingan F/B."
+            },
+            {
+              "when": "2, 6 atau 10 bad edges",
+              "action": "Sediakan muka F/B yang mempunyai tiga tepi buruk dan satu baik, lalu putar suku pusingan untuk menukar jumlah buruk sebanyak dua. Periksa semula sebelum set empat berikutnya."
+            },
+            {
+              "when": "4, 8 atau 12 bad edges",
+              "action": "Kumpulkan empat tepi buruk di satu muka F/B, buat suku pusingan dan periksa semula. U/D/R/L serta F2/B2 mengekalkan EO dalam pegangan ini."
+            },
+            {
+              "when": "Jumlah bad edges ganjil",
+              "action": "Semak cara mengira dan semua input warna. Pada kiub 3×3 sah jumlah tepi berorientasi salah sentiasa genap."
+            }
           ]
         },
         {
@@ -409,7 +747,25 @@
             "oll-26",
             "oll-27"
           ],
-          "library": "PLL"
+          "library": "PLL",
+          "situations": [
+            {
+              "when": "Hanya seluruh lapisan U tersasar",
+              "action": "Buat U, U′ atau U2 sahaja (AUF). Jika semua empat bar sisi sepadan selepas itu, PLL telah selesai."
+            },
+            {
+              "when": "Bucu betul · tepi sahaja berpindah",
+              "action": "Pilih Ua atau Ub untuk kitar tiga tepi, H untuk pertukaran dua pasang bertentangan, Z untuk dua pasang bersebelahan. Padankan arah dalam rajah, bukan nama sahaja."
+            },
+            {
+              "when": "Bucu dan tepi berpindah",
+              "action": "Semak headlights dan blok warna pada semua sisi. Cari gambar tepat dalam 21 PLL; AUF sebelum dan selepas formula mungkin diperlukan."
+            },
+            {
+              "when": "Pertukaran dua kepingan sahaja",
+              "action": "Kiub 3×3 sah tidak mempunyai satu pertukaran dua bucu sahaja atau dua tepi sahaja. Semak semua enam muka sebelum menganggapnya kes PLL."
+            }
+          ]
         }
       ]
     },
