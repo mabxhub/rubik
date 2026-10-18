@@ -490,3 +490,40 @@
       return onPhase ? allMoves : simplifyMoves(allMoves);
     }
 
+
+// Piece identities are defined by their solved centre colours, not their current slots.
+function makeFormulaTarget(state, pieces, mode = 'solved', label = '') {
+  const unique = new Map(pieces.map(piece => [piece.join(''), piece]));
+  const selected = [...unique.values()].filter(([kind, piece]) => {
+    const perm = kind === 'c' ? state.cp : state.ep;
+    const ori = kind === 'c' ? state.co : state.eo;
+    const pos = perm.indexOf(piece);
+    if (mode === 'affected') return true;
+    if (mode === 'orientation') return ori[pos] !== 0;
+    if (mode === 'permutation') return pos !== piece;
+    return pos !== piece || ori[pos] !== 0;
+  });
+  return {pieces: selected, mode, label};
+}
+function affectedFormulaTarget(state, sequence, label = 'Kepingan terlibat') {
+  let transform = solvedCubie();
+  for (const move of sequence) transform = multiplyCubie(transform, ALL_MOVES[move]);
+  const pieces = [];
+  for (let pos = 0; pos < 8; pos++) if (transform.cp[pos] !== pos || transform.co[pos] !== 0) pieces.push(['c', state.cp[pos]]);
+  for (let pos = 0; pos < 12; pos++) if (transform.ep[pos] !== pos || transform.eo[pos] !== 0) pieces.push(['e', state.ep[pos]]);
+  return makeFormulaTarget(state, pieces, 'affected', label);
+}
+function formulaTargetView(state, target) {
+  const current = new Set(), destinations = new Set(), names = [], locations = [];
+  for (const [kind, piece] of target.pieces) {
+    const perm = kind === 'c' ? state.cp : state.ep;
+    const faces = kind === 'c' ? CORNER_FACELETS : EDGE_FACELETS;
+    const pos = perm.indexOf(piece);
+    if (pos < 0 || !faces[piece]) continue;
+    faces[pos].forEach(index => current.add(index));
+    if (target.mode === 'solved' || target.mode === 'permutation') faces[piece].forEach(index => destinations.add(index));
+    names.push(faces[piece].map(index => FACE_NAMES[Math.floor(index / 9)]).join(''));
+    locations.push(faces[pos].map(index => FACE_NAMES[Math.floor(index / 9)]).join(''));
+  }
+  return {current: [...current], destinations: [...destinations], names, locations, label: target.label, mode: target.mode};
+}

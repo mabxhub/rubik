@@ -76,3 +76,11 @@ node tests/staged-solver.test.cjs
 ```
 
 Ujian merangkumi 200 susunan sah bagi setiap lima teknik (1,000 keseluruhan), sasaran setiap peringkat, liputan formula, kes sudah selesai dan kesetaraan notasi pustaka.
+
+## Sasaran formula semasa
+
+Semasa pemain penyelesaian aktif, bingkai cyan menandakan kepingan sasaran formula, dan bingkai merah jambu menandakan ruang tuju bagi formula kedudukan. Kedudukan semasa dan tuju dipaparkan sebagai contoh `UBR→DFR`. Identiti kepingan mengikuti warna pusat dan dijejak semula selepas setiap pusingan, termasuk langkah sebelumnya. Formula orientasi tidak memaparkan ruang tuju palsu; ia hanya menandakan kepingan yang perlu diarahkan. Fasa komputer yang tidak mempunyai sasaran kedudukan tunggal dilabel **Terlibat**, dan menunjukkan kepingan yang dipengaruhi formula. Penanda tidak mengubah warna input dan hilang apabila kembali mewarna atau penyelesaian selesai.
+
+```sh
+node tests/targets.test.cjs
+```

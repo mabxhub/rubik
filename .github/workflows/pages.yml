@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node tests/engine.test.cjs && node tests/painting.test.cjs && node tests/tutorial.test.cjs && node tests/staged-solver.test.cjs
+      - run: node tests/engine.test.cjs && node tests/painting.test.cjs && node tests/tutorial.test.cjs && node tests/staged-solver.test.cjs && node tests/targets.test.cjs
       - run: node scripts/build.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

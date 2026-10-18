@@ -37,19 +37,19 @@ function methodSmallSearch(state,actions,goal,key,maxDepth=5){if(goal(state))ret
 function solveByMethod(initial,method,library){
  if(!METHOD_NAMES[method])throw Error('Teknik tidak dikenali.');
  let state=initial;const moves=[],stages=[],formulas=[];let stage;
- function begin(name,goal){if(stage){stage.end=moves.length;if(!stage.goal(state))throw Error('Semakan peringkat gagal: '+stage.name);}stage={name,start:moves.length,end:moves.length,goal};stages.push(stage);}
- function add(sequence,label){if(!sequence.length)return;const start=moves.length;state=methodApply(state,sequence);moves.push(...sequence);formulas.push({start,end:moves.length,label,formula:sequence.map(m=>MOVE_NAMES[m]).join(' '),stage:stages.length-1});}
+ function begin(name,goal,pieces=[],mode='solved'){if(stage){stage.end=moves.length;if(!stage.goal(state))throw Error('Semakan peringkat gagal: '+stage.name);}stage={name,start:moves.length,end:moves.length,goal,pieces,mode};stages.push(stage);}
+ function add(sequence,label,targets=null){if(!sequence.length)return;targets=targets||(stage.pieces.length?makeFormulaTarget(state,stage.pieces,stage.mode,label):affectedFormulaTarget(state,sequence));const start=moves.length;state=methodApply(state,sequence);moves.push(...sequence);formulas.push({start,end:moves.length,label,formula:sequence.map(m=>MOVE_NAMES[m]).join(' '),stage:stages.length-1,targets});}
  function choice(result,label){add(result.moves,result.label||label);}
- function pattern(pieces,actions,label){for(const action of methodSolvePattern(state,pieces,actions))add(action.moves,label);}
+ function pattern(pieces,actions,label){for(const action of methodSolvePattern(state,pieces,actions))add(action.moves,label,makeFormulaTarget(state,pieces,'solved',label));}
  const cross=s=>[4,5,6,7].every(i=>s.ep[i]===i&&s.eo[i]===0),base=s=>cross(s)&&[4,5,6,7].every(i=>s.cp[i]===i&&s.co[i]===0);
  const oll=library.filter(a=>a.group==='OLL'),ocll=oll.filter(a=>/^oll-(21|22|23|24|25|26|27)$/.test(a.id)),pll=library.filter(a=>a.group==='PLL');
  if(method==='auto'){
-   let previous=0;const names=['Orientasi tepi · EO','Orientasi bucu & E-slice','Kumpulan separuh pusingan','Lengkapkan kiub'];
-   const all=solveCubeState(initial,(phase,phaseMoves)=>{const start=previous,end=phaseMoves.length;stages.push({name:names[phase],start,end});if(end>start)formulas.push({start,end,label:names[phase],formula:phaseMoves.slice(start,end).map(m=>MOVE_NAMES[m]).join(' '),stage:phase});previous=end;});
+   let previous=0,cursorState=initial;const names=['Orientasi tepi · EO','Orientasi bucu & E-slice','Kumpulan separuh pusingan','Lengkapkan kiub'];
+   const all=solveCubeState(initial,(phase,phaseMoves)=>{const start=previous,end=phaseMoves.length;stages.push({name:names[phase],start,end});if(end>start){const sequence=phaseMoves.slice(start,end);let targets;if(phase===0)targets=makeFormulaTarget(cursorState,Array.from({length:12},(_,i)=>['e',i]),'orientation',names[phase]);else if(phase===3)targets=makeFormulaTarget(cursorState,[...Array.from({length:8},(_,i)=>['c',i]),...Array.from({length:12},(_,i)=>['e',i])],'solved',names[phase]);else targets=affectedFormulaTarget(cursorState,sequence,'Kepingan terlibat');formulas.push({start,end,label:names[phase],formula:sequence.map(m=>MOVE_NAMES[m]).join(' '),stage:phase,targets});cursorState=methodApply(cursorState,sequence);}previous=end;});
    return {method,moves:all,stages,formulas};
  }
  if(method==='zz'){
-   begin('Orientasi tepi · EO',s=>s.eo.every(v=>v===0));initSolverTables();let coord=getEOIndex(state);const eoMoves=[];while(distEO[coord]>0){let found=false;for(let m=0;m<18;m++){const next=moveEO[coord*18+m];if(distEO[next]===distEO[coord]-1){eoMoves.push(m);coord=next;found=true;break;}}if(!found)throw Error('EO tidak lengkap.');}add(eoMoves,'Betulkan orientasi tepi');
+   begin('Orientasi tepi · EO',s=>s.eo.every(v=>v===0),Array.from({length:12},(_,i)=>['e',i]),'orientation');initSolverTables();let coord=getEOIndex(state);const eoMoves=[];while(distEO[coord]>0){let found=false;for(let m=0;m<18;m++){const next=moveEO[coord*18+m];if(distEO[next]===distEO[coord]-1){eoMoves.push(m);coord=next;found=true;break;}}if(!found)throw Error('EO tidak lengkap.');}add(eoMoves,'Betulkan orientasi tepi');
    begin('Garis bawah · EOLine',s=>s.eo.every(v=>v===0)&&[5,7].every(i=>s.ep[i]===i));pattern([['e',5],['e',7]],PHASE_MOVES[1].map(m=>methodAction([m])),'Bina garis DF–DB');
    begin('Blok kiri & kanan · F2L',methodF2L);const rul=[0,1,2,3,4,5,12,13,14].map(m=>methodAction([m]));pattern([['e',4],['e',6]],rul,'Masukkan tepi bawah sisi');
  }else{begin('Salib bawah · Cross',cross);pattern([4,5,6,7].map(i=>['e',i]),ALL_MOVES.map((_,m)=>methodAction([m])),'Bina Cross');}
@@ -65,18 +65,18 @@ function solveByMethod(initial,method,library){
    for(let slot=0;slot<4;slot++)pattern([['c',METHOD_SLOTS[slot].corner],['e',METHOD_SLOTS[slot].edge]],methodSlotActions(METHOD_SLOTS.slice(slot),method==='zz'),'Pasangan F2L '+(slot+1));
  }
  if(method==='beginner'||method==='cfop2'){
-   begin('Salib atas · 2-Look OLL (tepi)',s=>methodF2L(s)&&s.eo.every(v=>v===0));const crossActions=[...methodU,methodAction("F R U R' U' F'")];add(methodSmallSearch(state,crossActions,s=>s.eo.every(v=>v===0),s=>s.eo.slice(0,4).join(''),7),'Orientasi tepi atas');
+   begin('Salib atas · 2-Look OLL (tepi)',s=>methodF2L(s)&&s.eo.every(v=>v===0),[0,1,2,3].map(i=>['e',i]),'orientation');const crossActions=[...methodU,methodAction("F R U R' U' F'")];add(methodSmallSearch(state,crossActions,s=>s.eo.every(v=>v===0),s=>s.eo.slice(0,4).join(''),7),'Orientasi tepi atas');
  }
  if(method==='beginner'){
-   begin('Padankan tepi atas',s=>methodF2L(s)&&s.ep.every((v,i)=>v===i)&&s.eo.every(v=>v===0));add(methodSmallSearch(state,[...methodU,methodAction("R U R' U R U2 R' U")],s=>s.ep.every((v,i)=>v===i),s=>s.ep.slice(0,4).join(','),7),'Kitar tepi atas');
-   begin('Letakkan bucu atas',s=>methodF2L(s)&&s.cp.every((v,i)=>v===i)&&s.ep.every((v,i)=>v===i));const cornerCycle=methodAction("U R U' L' U R' U' L");const cornerActions=[];for(let u=-1;u<3;u++){const setup=u<0?[]:[u];const action=methodAction([...setup,...cornerCycle.moves,...methodInverse(setup)]);cornerActions.push(action,methodAction(methodInverse(action.moves)));}add(methodSmallSearch(state,cornerActions,s=>s.cp.every((v,i)=>v===i),s=>s.cp.slice(0,4).join(','),4),'Kitar bucu atas');
-   begin('Arahkan bucu · Selesai',methodFinished);if(!methodFinished(state)){for(let turn=0;turn<4;turn++){let guard=0;while(state.co[0]!==0){if(++guard>3)throw Error('Orientasi bucu tidak lengkap.');add(methodParse("R' D' R D R' D' R D"),'Putar bucu UFR');}add([0],'Bawa bucu seterusnya ke UFR');}}
+   begin('Padankan tepi atas',s=>methodF2L(s)&&s.ep.every((v,i)=>v===i)&&s.eo.every(v=>v===0),[0,1,2,3].map(i=>['e',i]),'permutation');add(methodSmallSearch(state,[...methodU,methodAction("R U R' U R U2 R' U")],s=>s.ep.every((v,i)=>v===i),s=>s.ep.slice(0,4).join(','),7),'Kitar tepi atas');
+   begin('Letakkan bucu atas',s=>methodF2L(s)&&s.cp.every((v,i)=>v===i)&&s.ep.every((v,i)=>v===i),[0,1,2,3].map(i=>['c',i]),'permutation');const cornerCycle=methodAction("U R U' L' U R' U' L");const cornerActions=[];for(let u=-1;u<3;u++){const setup=u<0?[]:[u];const action=methodAction([...setup,...cornerCycle.moves,...methodInverse(setup)]);cornerActions.push(action,methodAction(methodInverse(action.moves)));}add(methodSmallSearch(state,cornerActions,s=>s.cp.every((v,i)=>v===i),s=>s.cp.slice(0,4).join(','),4),'Kitar bucu atas');
+   begin('Arahkan bucu · Selesai',methodFinished,[0,1,2,3].map(i=>['c',i]),'orientation');if(!methodFinished(state)){for(let turn=0;turn<4;turn++){let guard=0;while(state.co[0]!==0){if(++guard>3)throw Error('Orientasi bucu tidak lengkap.');add(methodParse("R' D' R D R' D' R D"),'Putar bucu UFR',makeFormulaTarget(state,[['c',state.cp[0]]],'orientation','Putar bucu UFR'));}add([0],'Bawa bucu seterusnya ke UFR');}}
  }else{
-   begin(method==='cfop'?'Orientasi seluruh muka atas · OLL':'Orientasi bucu atas · OCLL',s=>methodF2L(s)&&methodTopOriented(s));choice(methodChooseOrient(state,method==='cfop'?oll:ocll,s=>methodTopOriented(s)),method==='cfop'?'Formula OLL':'Formula OCLL');
+   begin(method==='cfop'?'Orientasi seluruh muka atas · OLL':'Orientasi bucu atas · OCLL',s=>methodF2L(s)&&methodTopOriented(s),[...Array.from({length:4},(_,i)=>['c',i]),...Array.from({length:4},(_,i)=>['e',i])],'orientation');choice(methodChooseOrient(state,method==='cfop'?oll:ocll,s=>methodTopOriented(s)),method==='cfop'?'Formula OLL':'Formula OCLL');
    if(method==='cfop2'){
-     begin('Kedudukan bucu · 2-Look PLL',s=>methodF2L(s)&&methodTopOriented(s)&&s.cp.every((v,i)=>v===i));const actions=[...methodU,...pll.filter(a=>['pll-t','pll-y'].includes(a.id)).map(a=>methodAction(methodCompile(a.alg)))];add(methodSmallSearch(state,actions,s=>s.cp.every((v,i)=>v===i),s=>s.cp.slice(0,4).join(','),4),'Susun bucu atas');
-     begin('Kedudukan tepi · 2-Look PLL',methodFinished);choice(methodChoosePLL(state,pll.filter(a=>['pll-ua','pll-ub','pll-h','pll-z'].includes(a.id))),'Susun tepi atas');
-   }else{begin('Kedudukan lapisan akhir · PLL',methodFinished);choice(methodChoosePLL(state,pll),'Formula PLL');}
+     begin('Kedudukan bucu · 2-Look PLL',s=>methodF2L(s)&&methodTopOriented(s)&&s.cp.every((v,i)=>v===i),[0,1,2,3].map(i=>['c',i]),'permutation');const actions=[...methodU,...pll.filter(a=>['pll-t','pll-y'].includes(a.id)).map(a=>methodAction(methodCompile(a.alg)))];add(methodSmallSearch(state,actions,s=>s.cp.every((v,i)=>v===i),s=>s.cp.slice(0,4).join(','),4),'Susun bucu atas');
+     begin('Kedudukan tepi · 2-Look PLL',methodFinished,[0,1,2,3].map(i=>['e',i]),'permutation');choice(methodChoosePLL(state,pll.filter(a=>['pll-ua','pll-ub','pll-h','pll-z'].includes(a.id))),'Susun tepi atas');
+   }else{begin('Kedudukan lapisan akhir · PLL',methodFinished,[...Array.from({length:4},(_,i)=>['c',i]),...Array.from({length:4},(_,i)=>['e',i])],'permutation');choice(methodChoosePLL(state,pll),'Formula PLL');}
  }
- stage.end=moves.length;if(!stage.goal(state)||!methodFinished(state))throw Error('Penyelesaian teknik belum lengkap.');return {method,moves,stages:stages.map(({goal,...rest})=>rest),formulas};
+ stage.end=moves.length;if(!stage.goal(state)||!methodFinished(state))throw Error('Penyelesaian teknik belum lengkap.');return {method,moves,stages:stages.map(({goal,pieces,mode,...rest})=>rest),formulas};
 }

@@ -11,4 +11,4 @@ jobs:
         with:
           node-version: '22'
       - run: node --check app.js && node --check engine.js && node --check solver-worker.js && node --check staged-solver.js && node --check tutorial-moves.js && node --check tutorial.js
-      - run: node tests/engine.test.cjs && node tests/painting.test.cjs && node tests/tutorial.test.cjs && node tests/staged-solver.test.cjs
+      - run: node tests/engine.test.cjs && node tests/painting.test.cjs && node tests/tutorial.test.cjs && node tests/staged-solver.test.cjs && node tests/targets.test.cjs

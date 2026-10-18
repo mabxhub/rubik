@@ -74,6 +74,8 @@ document.addEventListener('keydown', event => {
     let scene, camera, renderer, cubeGroup, pivotGroup;
     const cubieMeshes = [];
     const stickerMeshes = new Array(54);
+    const targetMarkers = new Array(54);
+    const destinationMarkers = new Array(54);
 
     // Rounded-rect sticker shape for authentic Grubiks look
     function createRoundedStickerGeometry(size, radius) {
@@ -124,6 +126,15 @@ document.addEventListener('keydown', event => {
       sticker.add(marker);
     }
 
+    function createTargetRing(outer, inner) {
+      const shape = new THREE.Shape();
+      shape.moveTo(-outer,-outer); shape.lineTo(outer,-outer); shape.lineTo(outer,outer); shape.lineTo(-outer,outer); shape.closePath();
+      const hole = new THREE.Path();
+      hole.moveTo(-inner,-inner); hole.lineTo(-inner,inner); hole.lineTo(inner,inner); hole.lineTo(inner,-inner); hole.closePath();
+      shape.holes.push(hole);
+      return new THREE.ShapeGeometry(shape);
+    }
+
     function initThree() {
       const wrap = document.getElementById('canvasWrap');
       const canvas = document.getElementById('rubikCanvas');
@@ -168,6 +179,10 @@ document.addEventListener('keydown', event => {
       }
 
       const stickerGeo = createRoundedStickerGeometry(0.87, 0.08);
+      const targetGeo = createTargetRing(0.421,0.386);
+      const destinationGeo = createTargetRing(0.49,0.46);
+      const targetMaterial = new THREE.MeshBasicMaterial({color:0x5effed,depthWrite:false});
+      const destinationMaterial = new THREE.MeshBasicMaterial({color:0xff8ed8,depthWrite:false});
 
       for (let idx = 0; idx < 54; idx++) {
         const { pos, normal } = getFacelet3D(idx);
@@ -183,6 +198,14 @@ document.addEventListener('keydown', event => {
         sticker.userData = { faceletIndex: idx };
         parentCubie.add(sticker);
         stickerMeshes[idx] = sticker;
+        const targetMarker = new THREE.Mesh(targetGeo,targetMaterial);
+        const destinationMarker = new THREE.Mesh(destinationGeo,destinationMaterial);
+        targetMarker.position.z = 0.016;
+        destinationMarker.position.z = 0.012;
+        targetMarker.visible = destinationMarker.visible = false;
+        sticker.add(targetMarker,destinationMarker);
+        targetMarkers[idx] = targetMarker;
+        destinationMarkers[idx] = destinationMarker;
         if (idx % 9 === 4) addFaceMarker(sticker, FACE_NAMES[Math.floor(idx / 9)]);
       }
 
@@ -316,6 +339,7 @@ document.addEventListener('keydown', event => {
       if (isAnimating) return;
       isAnimating = true;
       if (moveArrow) moveArrow.visible = false;
+      destinationMarkers.forEach(marker => { if (marker) marker.visible = false; });
 
       const face = Math.floor(moveIdx / 3);
       const pow = moveIdx % 3; // 0: CW 90, 1: 180, 2: CCW 90
@@ -478,6 +502,7 @@ document.addEventListener('keydown', event => {
       stopAuto();
       inSolveMode = false;
       updateMoveArrow();
+      updateSolutionTarget();
       solutionMoves = [];
       solutionStep = 0;
       document.getElementById('solvePlayerBar').classList.add('hidden');
@@ -486,6 +511,7 @@ document.addEventListener('keydown', event => {
 
     function updateSolveBarUI() {
       updateMoveArrow();
+      updateSolutionTarget();
       const total = solutionMoves.length;
       const cur = solutionStep;
       const stageIndex = solutionStages.findIndex(stage => cur >= stage.start && cur < stage.end);
@@ -545,6 +571,7 @@ document.addEventListener('keydown', event => {
       if (isAnimating || solutionStep <= 0) return;
       stopAuto();
       solutionStep--;
+      updateSolutionTarget();
       const inv = inverseMoveIndex(solutionMoves[solutionStep]);
       animateLayerMove(inv, autoStepMs, () => {
         updateSolveBarUI();
@@ -753,4 +780,26 @@ function updateMoveArrow() {
   arrowHead(1);
   if (move % 3 === 1) arrowHead(0.5);
   sticker.add(moveArrow);
+}
+
+function updateSolutionTarget() {
+  targetMarkers.forEach(marker => { if (marker) marker.visible = false; });
+  destinationMarkers.forEach(marker => { if (marker) marker.visible = false; });
+  const row = document.getElementById('solutionTarget');
+  row.classList.add('hidden');
+  if (!inSolveMode || solutionStep >= solutionMoves.length) return;
+  const formula = solutionFormulas.find(item => solutionStep >= item.start && solutionStep < item.end);
+  if (!formula) return;
+  const check = faceletsToCubie(facelets);
+  if (!check.valid) return;
+  const target = formula.targets || affectedFormulaTarget(check.state,solutionMoves.slice(solutionStep,formula.end));
+  const view = formulaTargetView(check.state,target);
+  if (!view.current.length) return;
+  view.current.forEach(index => { if (targetMarkers[index]) targetMarkers[index].visible = true; });
+  if (!isAnimating) view.destinations.forEach(index => { if (destinationMarkers[index]) destinationMarkers[index].visible = true; });
+  const caption = document.getElementById('solutionTargetCaption');
+  caption.textContent = view.mode === 'orientation' ? `Orientasi: ${view.locations.join(' + ')}` : view.mode === 'affected' ? `Terlibat: ${view.locations.join(' + ')}` : view.names.map((name,index) => view.locations[index] === name ? name : `${view.locations[index]}→${name}`).join(' + ');
+  row.title = `${target.label || formula.label}. ${caption.textContent}. Cyan: kepingan sasaran${view.destinations.length ? '; merah jambu: ruang tuju' : ''}.`;
+  document.getElementById('targetDestinationKey').classList.toggle('hidden',!view.destinations.length);
+  row.classList.remove('hidden');
 }
